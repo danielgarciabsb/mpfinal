@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/igor/Área de Trabalho/ProjetoFinal/adaptador/adaptador.cpp
+adaptador.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/adaptador/adaptador.hpp
+
+include/adaptador.hpp
+interconexao.hpp
+include/interconexao.hpp
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
+include/interconexao.hpp
+elemento.hpp
+include/elemento.hpp
+

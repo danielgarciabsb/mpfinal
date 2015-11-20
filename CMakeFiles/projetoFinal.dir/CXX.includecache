@@ -1,0 +1,66 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal.cpp
+projetoFinal_testes.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp
+projetoFinal.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal.hpp
+ctime
+-
+cstdlib
+-
+
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal.hpp
+repositorio.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/repositorio.hpp
+
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp
+projetoFinal.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/projetoFinal.hpp
+gtest/gtest.h
+/home/igor/Área de Trabalho/ProjetoFinal/gtest/gtest.h
+
+include/adaptador.hpp
+interconexao.hpp
+include/interconexao.hpp
+
+include/cidade.hpp
+elemento.hpp
+include/elemento.hpp
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
+include/gerador.hpp
+interconexao.hpp
+include/interconexao.hpp
+
+include/interconexao.hpp
+elemento.hpp
+include/elemento.hpp
+
+include/repositorio.hpp
+elemento.hpp
+include/elemento.hpp
+gerador.hpp
+include/gerador.hpp
+adaptador.hpp
+include/adaptador.hpp
+cidade.hpp
+include/cidade.hpp
+interconexao.hpp
+include/interconexao.hpp
+fstream
+-
+

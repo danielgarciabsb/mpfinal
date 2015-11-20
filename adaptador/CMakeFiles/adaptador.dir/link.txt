@@ -1,0 +1,2 @@
+/usr/bin/ar cr libadaptador.a  CMakeFiles/adaptador.dir/adaptador.cpp.o
+/usr/bin/ranlib libadaptador.a

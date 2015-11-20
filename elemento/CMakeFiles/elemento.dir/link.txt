@@ -1,0 +1,2 @@
+/usr/bin/ar cr libelemento.a  CMakeFiles/elemento.dir/elemento.cpp.o
+/usr/bin/ranlib libelemento.a

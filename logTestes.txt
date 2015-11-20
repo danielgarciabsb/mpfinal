@@ -1,0 +1,98 @@
+
+--------------------------
+ Arquivo Log Testes
+--------------------------
+
+
+	*** Teste: [Elemento - InstanciarAndGetters].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:87
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:91
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:97
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:102
+	*
+	*** Fim do Teste [Elemento - InstanciarAndGetters].
+
+
+	*** Teste: [Gerador - InstanciarAndGetters].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:118
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:124
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:130
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:135
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:141
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:147
+	*
+	*** Fim do Teste [Gerador - InstanciarAndGetters].
+
+
+	*** Teste: [Cidade - InstanciarAndGetters].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:161
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:167
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:173
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:178
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:184
+	*
+	*** Fim do Teste [Cidade - InstanciarAndGetters].
+
+
+	*** Teste: [Adaptador - InstanciarAndGetters].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:198
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:204
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:210
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:215
+	*
+	*** Fim do Teste [Adaptador - InstanciarAndGetters].
+
+
+	*** Teste: [Interconexao - InstanciarAndGetters].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:241
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:247
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:253
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:258
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:264
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:269
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:275
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:281
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:287
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:293
+	*
+	*** Fim do Teste [Interconexao - InstanciarAndGetters].
+
+
+	*** Teste: [Repositorio - LeituraArquivo].
+	*
+	*	 >> Sucesso em /home/igor/Área de Trabalho/ProjetoFinal/projetoFinal_testes.hpp:378
+	*
+	*** Fim do Teste [Repositorio - LeituraArquivo].
+
+--------------------------
+ Fim Arquivo Log Testes
+--------------------------

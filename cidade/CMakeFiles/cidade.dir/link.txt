@@ -1,0 +1,2 @@
+/usr/bin/ar cr libcidade.a  CMakeFiles/cidade.dir/cidade.cpp.o
+/usr/bin/ranlib libcidade.a

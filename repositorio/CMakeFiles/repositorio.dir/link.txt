@@ -1,0 +1,2 @@
+/usr/bin/ar cr librepositorio.a  CMakeFiles/repositorio.dir/repositorio.cpp.o
+/usr/bin/ranlib librepositorio.a

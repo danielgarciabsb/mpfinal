@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/igor/Área de Trabalho/ProjetoFinal/gerador/gerador.cpp
+gerador.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/gerador/gerador.hpp
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
+include/gerador.hpp
+interconexao.hpp
+include/interconexao.hpp
+
+include/interconexao.hpp
+elemento.hpp
+include/elemento.hpp
+

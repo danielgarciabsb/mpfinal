@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/igor/Área de Trabalho/ProjetoFinal/interconexao/interconexao.cpp
+interconexao.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/interconexao/interconexao.hpp
+cstdlib
+-
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
+include/interconexao.hpp
+elemento.hpp
+include/elemento.hpp
+

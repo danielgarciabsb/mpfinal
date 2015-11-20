@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/igor/Área de Trabalho/ProjetoFinal/elemento/elemento.cpp
+elemento.hpp
+/home/igor/Área de Trabalho/ProjetoFinal/elemento/elemento.hpp
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
