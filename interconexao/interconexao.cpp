@@ -27,7 +27,7 @@ void Interconexao::aplicarChanceDeFalha()
 		this->previsaoTerminoConserto = this->tempoConserto;
 		this->working = false;
 	}
-	else if(--(this->previsaoTerminoConserto) == 0)
+	else if((this->previsaoTerminoConserto)-- == 0)
 		this->working = true;
 		
 	if(this->getSaidas()->size() == 0)
