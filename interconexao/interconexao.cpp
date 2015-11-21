@@ -29,6 +29,12 @@ void Interconexao::aplicarChanceDeFalha()
 	}
 	else if((this->previsaoTerminoConserto)-- == 0)
 		this->working = true;
+	else if(this->previsaoTerminoConserto > 0)
+	{
+		cout << "- " << this->getNome() 
+		<< " esta em conserto (previsao de termino: " << this->previsaoTerminoConserto 
+		<< ")" << endl;
+	}
 		
 	if(this->getSaidas()->size() == 0)
 		this->working = false;
