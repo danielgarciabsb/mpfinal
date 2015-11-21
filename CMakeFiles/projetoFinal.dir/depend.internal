@@ -10,4 +10,5 @@ CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o
  include/elemento.hpp
  include/gerador.hpp
  include/interconexao.hpp
+ include/relatorio.hpp
  include/repositorio.hpp

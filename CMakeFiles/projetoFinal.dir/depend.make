@@ -9,5 +9,6 @@ CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/cidade.hpp
 CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/elemento.hpp
 CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/gerador.hpp
 CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/interconexao.hpp
+CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/relatorio.hpp
 CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o: include/repositorio.hpp
 

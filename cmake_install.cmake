@@ -56,6 +56,7 @@ IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/gerador/cmake_install.cmake")
   INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/interconexao/cmake_install.cmake")
   INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/repositorio/cmake_install.cmake")
+  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/relatorio/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 

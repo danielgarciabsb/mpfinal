@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include "relatorio.hpp"
 using namespace std;
 
 class Elemento
@@ -46,7 +47,7 @@ class Elemento
 		{
 			cout << "\t- " << this->getNome() << " transmitiu " << carga << " de carga." << endl;
 		};
-		
+				
 		virtual void draw() {} ;
 };
 

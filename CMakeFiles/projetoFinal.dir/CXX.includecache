@@ -41,6 +41,8 @@ string
 -
 set
 -
+relatorio.hpp
+include/relatorio.hpp
 
 include/gerador.hpp
 interconexao.hpp
@@ -49,6 +51,10 @@ include/interconexao.hpp
 include/interconexao.hpp
 elemento.hpp
 include/elemento.hpp
+
+include/relatorio.hpp
+iostream
+-
 
 include/repositorio.hpp
 elemento.hpp

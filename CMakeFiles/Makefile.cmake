@@ -17,6 +17,7 @@ SET(CMAKE_MAKEFILE_DEPENDS
   "elemento/CMakeLists.txt"
   "gerador/CMakeLists.txt"
   "interconexao/CMakeLists.txt"
+  "relatorio/CMakeLists.txt"
   "repositorio/CMakeLists.txt"
   "/usr/share/cmake-2.8/Modules/CMakeCInformation.cmake"
   "/usr/share/cmake-2.8/Modules/CMakeCXXInformation.cmake"
@@ -52,6 +53,7 @@ SET(CMAKE_MAKEFILE_PRODUCTS
   "gerador/CMakeFiles/CMakeDirectoryInformation.cmake"
   "interconexao/CMakeFiles/CMakeDirectoryInformation.cmake"
   "repositorio/CMakeFiles/CMakeDirectoryInformation.cmake"
+  "relatorio/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
@@ -64,4 +66,5 @@ SET(CMAKE_DEPEND_INFO_FILES
   "gerador/CMakeFiles/gerador.dir/DependInfo.cmake"
   "interconexao/CMakeFiles/interconexao.dir/DependInfo.cmake"
   "repositorio/CMakeFiles/repositorio.dir/DependInfo.cmake"
+  "relatorio/CMakeFiles/relatorio.dir/DependInfo.cmake"
   )

@@ -21,8 +21,14 @@ string
 -
 set
 -
+relatorio.hpp
+include/relatorio.hpp
 
 include/interconexao.hpp
 elemento.hpp
 include/elemento.hpp
+
+include/relatorio.hpp
+iostream
+-
 

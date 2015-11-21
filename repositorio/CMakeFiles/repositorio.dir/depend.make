@@ -7,5 +7,6 @@ repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/cidade.hpp
 repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/elemento.hpp
 repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/gerador.hpp
 repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/interconexao.hpp
+repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/relatorio.hpp
 repositorio/CMakeFiles/repositorio.dir/repositorio.cpp.o: include/repositorio.hpp
 

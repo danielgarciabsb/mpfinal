@@ -11,6 +11,8 @@ repositorio.hpp
 /home/igor/Área de Trabalho/ProjetoFinal/repositorio/repositorio.hpp
 fstream
 -
+cmath
+-
 
 include/adaptador.hpp
 interconexao.hpp
@@ -27,6 +29,8 @@ string
 -
 set
 -
+relatorio.hpp
+include/relatorio.hpp
 
 include/gerador.hpp
 interconexao.hpp
@@ -35,6 +39,10 @@ include/interconexao.hpp
 include/interconexao.hpp
 elemento.hpp
 include/elemento.hpp
+
+include/relatorio.hpp
+iostream
+-
 
 include/repositorio.hpp
 elemento.hpp

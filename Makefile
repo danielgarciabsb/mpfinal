@@ -243,6 +243,19 @@ repositorio/fast:
 	$(MAKE) -f repositorio/CMakeFiles/repositorio.dir/build.make repositorio/CMakeFiles/repositorio.dir/build
 .PHONY : repositorio/fast
 
+#=============================================================================
+# Target rules for targets named relatorio
+
+# Build rule for target.
+relatorio: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 relatorio
+.PHONY : relatorio
+
+# fast build rule for target.
+relatorio/fast:
+	$(MAKE) -f relatorio/CMakeFiles/relatorio.dir/build.make relatorio/CMakeFiles/relatorio.dir/build
+.PHONY : relatorio/fast
+
 projetoFinal.o: projetoFinal.cpp.o
 .PHONY : projetoFinal.o
 
@@ -287,6 +300,7 @@ help:
 	@echo "... gerador"
 	@echo "... interconexao"
 	@echo "... repositorio"
+	@echo "... relatorio"
 	@echo "... projetoFinal.o"
 	@echo "... projetoFinal.i"
 	@echo "... projetoFinal.s"

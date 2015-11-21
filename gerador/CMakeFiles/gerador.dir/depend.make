@@ -5,4 +5,5 @@ gerador/CMakeFiles/gerador.dir/gerador.cpp.o: gerador/gerador.cpp
 gerador/CMakeFiles/gerador.dir/gerador.cpp.o: include/elemento.hpp
 gerador/CMakeFiles/gerador.dir/gerador.cpp.o: include/gerador.hpp
 gerador/CMakeFiles/gerador.dir/gerador.cpp.o: include/interconexao.hpp
+gerador/CMakeFiles/gerador.dir/gerador.cpp.o: include/relatorio.hpp
 

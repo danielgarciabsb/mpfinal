@@ -43,6 +43,7 @@ class Adaptador : public Elemento
 		{ 
 			this->setCarga(carga); 
 		} ;
+		
 };
 
 #endif // _ADAPTADOR_H

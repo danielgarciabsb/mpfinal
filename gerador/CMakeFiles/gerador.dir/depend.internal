@@ -6,3 +6,4 @@ gerador/CMakeFiles/gerador.dir/gerador.cpp.o
  include/elemento.hpp
  include/gerador.hpp
  include/interconexao.hpp
+ include/relatorio.hpp

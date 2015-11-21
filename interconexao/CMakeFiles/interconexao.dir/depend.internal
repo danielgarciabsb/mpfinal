@@ -5,3 +5,4 @@ interconexao/CMakeFiles/interconexao.dir/interconexao.cpp.o
  /home/igor/Área de Trabalho/ProjetoFinal/interconexao/interconexao.cpp
  include/elemento.hpp
  include/interconexao.hpp
+ include/relatorio.hpp

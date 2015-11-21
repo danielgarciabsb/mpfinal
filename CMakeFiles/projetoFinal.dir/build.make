@@ -88,6 +88,7 @@ projetoFinal: adaptador/libadaptador.a
 projetoFinal: gerador/libgerador.a
 projetoFinal: interconexao/libinterconexao.a
 projetoFinal: repositorio/librepositorio.a
+projetoFinal: relatorio/librelatorio.a
 projetoFinal: CMakeFiles/projetoFinal.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable projetoFinal"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/projetoFinal.dir/link.txt --verbose=$(VERBOSE)

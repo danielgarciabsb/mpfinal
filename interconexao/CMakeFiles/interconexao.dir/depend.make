@@ -4,4 +4,5 @@
 interconexao/CMakeFiles/interconexao.dir/interconexao.cpp.o: interconexao/interconexao.cpp
 interconexao/CMakeFiles/interconexao.dir/interconexao.cpp.o: include/elemento.hpp
 interconexao/CMakeFiles/interconexao.dir/interconexao.cpp.o: include/interconexao.hpp
+interconexao/CMakeFiles/interconexao.dir/interconexao.cpp.o: include/relatorio.hpp
 

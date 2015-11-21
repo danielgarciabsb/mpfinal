@@ -5,4 +5,5 @@
 /home/igor/Área de Trabalho/ProjetoFinal/interconexao/CMakeFiles/interconexao.dir
 /home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles/projetoFinal.dir
 /home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles/projetoFinal_coverage.dir
+/home/igor/Área de Trabalho/ProjetoFinal/relatorio/CMakeFiles/relatorio.dir
 /home/igor/Área de Trabalho/ProjetoFinal/repositorio/CMakeFiles/repositorio.dir

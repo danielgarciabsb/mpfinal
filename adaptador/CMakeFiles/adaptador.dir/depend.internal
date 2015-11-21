@@ -6,3 +6,4 @@ adaptador/CMakeFiles/adaptador.dir/adaptador.cpp.o
  include/adaptador.hpp
  include/elemento.hpp
  include/interconexao.hpp
+ include/relatorio.hpp
