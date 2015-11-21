@@ -1,0 +1,2 @@
+/usr/bin/ar cr librelatorio.a  CMakeFiles/relatorio.dir/relatorio.cpp.o
+/usr/bin/ranlib librelatorio.a

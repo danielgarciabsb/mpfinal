@@ -19,12 +19,15 @@ void Interconexao::aplicarChanceDeFalha()
 {
 	float num = ((float) rand()) / RAND_MAX;
 	
-	if((this->chanceFalha > 0.) && (num <= this->chanceFalha))
+	if((this->chanceFalha > 0.) && (num <= this->chanceFalha) && this->working)
 	{
 		cout << "- " << this->getNome() << " falhou" << endl;
+		Relatorio::numFalhasInterconexoes++;
+		Relatorio::custoTotal += this->custoConserto;
+		this->previsaoTerminoConserto = 20;
 		this->working = false;
 	}
-	else
+	else if(--(this->previsaoTerminoConserto) == 0)
 		this->working = true;
 		
 	if(this->getSaidas()->size() == 0)

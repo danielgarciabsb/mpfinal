@@ -10,6 +10,7 @@ class Interconexao: public Elemento
 		float chanceFalha;
 		int tempoConserto;
 		int custoConserto;
+		int previsaoTerminoConserto;
 		bool working;
 		
 	public:
@@ -32,6 +33,7 @@ class Interconexao: public Elemento
 			this->chanceFalha = chanceFalha;
 			this->tempoConserto = tempoConserto;
 			this->custoConserto = custoConserto;
+			this->working = true;
 		};
 		
 		void transmitirCarga(int carga)

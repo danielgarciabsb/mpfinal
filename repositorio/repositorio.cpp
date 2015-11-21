@@ -1,11 +1,14 @@
 #include "repositorio.hpp"
 #include <fstream>
+#include <cmath>
 
 set<Elemento*> Repositorio::elementos;
 set<Gerador*> Repositorio::geradores;
 set<Adaptador*> Repositorio::adaptadores;
 set<Cidade*> Repositorio::cidades;
 set<Interconexao*> Repositorio::interconexoes;
+
+//int Repositorio::numGeradores;
 
 void Repositorio::lerElementos(string nomeArquivo)
 {
@@ -34,6 +37,8 @@ void Repositorio::lerElementos(string nomeArquivo)
 				Repositorio::getGeradores()->insert(g);
 				Repositorio::getElementos()->insert(g);
 				
+				Relatorio::numGeradores++;
+				
 				break;
 			
 			case 'C':
@@ -44,6 +49,8 @@ void Repositorio::lerElementos(string nomeArquivo)
 				c = new Cidade(nome, posicao, posicao, recursoNecessario);
 				Repositorio::getCidades()->insert(c);
 				Repositorio::getElementos()->insert(c);
+				
+				Relatorio::numCidades++;
 				
 				break;
 				
@@ -68,6 +75,10 @@ void Repositorio::lerElementos(string nomeArquivo)
 										capacidadeMax, chanceFalha, tempoConserto, custoConserto);
 				Repositorio::getInterconexoes()->insert(i);
 				Repositorio::getElementos()->insert(i);
+				
+				Relatorio::tamanhoTotalInterconexoes += sqrt( pow((posicaoInicial.x - posicaoFinal.x), 2) + 
+														pow((posicaoInicial.y - posicaoFinal.y), 2) );
+				
 				break;
 		}
 	}
