@@ -3,5 +3,4 @@
 
 elemento/CMakeFiles/elemento.dir/elemento.cpp.o: elemento/elemento.cpp
 elemento/CMakeFiles/elemento.dir/elemento.cpp.o: include/elemento.hpp
-elemento/CMakeFiles/elemento.dir/elemento.cpp.o: include/relatorio.hpp
 

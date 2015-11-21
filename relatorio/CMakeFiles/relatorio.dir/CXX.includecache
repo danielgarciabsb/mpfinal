@@ -10,7 +10,23 @@
 relatorio.hpp
 /home/igor/Área de Trabalho/ProjetoFinal/relatorio/relatorio.hpp
 
+include/cidade.hpp
+elemento.hpp
+include/elemento.hpp
+
+include/elemento.hpp
+iostream
+-
+string
+-
+set
+-
+
 include/relatorio.hpp
 iostream
+-
+cidade.hpp
+include/cidade.hpp
+set
 -
 

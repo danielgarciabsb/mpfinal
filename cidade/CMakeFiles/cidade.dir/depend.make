@@ -4,5 +4,4 @@
 cidade/CMakeFiles/cidade.dir/cidade.cpp.o: cidade/cidade.cpp
 cidade/CMakeFiles/cidade.dir/cidade.cpp.o: include/cidade.hpp
 cidade/CMakeFiles/cidade.dir/cidade.cpp.o: include/elemento.hpp
-cidade/CMakeFiles/cidade.dir/cidade.cpp.o: include/relatorio.hpp
 

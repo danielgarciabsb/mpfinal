@@ -3,6 +3,7 @@
 
 gerador/CMakeFiles/gerador.dir/gerador.cpp.o
  /home/igor/Área de Trabalho/ProjetoFinal/gerador/gerador.cpp
+ include/cidade.hpp
  include/elemento.hpp
  include/gerador.hpp
  include/interconexao.hpp

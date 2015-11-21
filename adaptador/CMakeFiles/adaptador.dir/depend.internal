@@ -4,6 +4,7 @@
 adaptador/CMakeFiles/adaptador.dir/adaptador.cpp.o
  /home/igor/Área de Trabalho/ProjetoFinal/adaptador/adaptador.cpp
  include/adaptador.hpp
+ include/cidade.hpp
  include/elemento.hpp
  include/interconexao.hpp
  include/relatorio.hpp

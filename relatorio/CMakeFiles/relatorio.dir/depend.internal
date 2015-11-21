@@ -3,4 +3,6 @@
 
 relatorio/CMakeFiles/relatorio.dir/relatorio.cpp.o
  /home/igor/Área de Trabalho/ProjetoFinal/relatorio/relatorio.cpp
+ include/cidade.hpp
+ include/elemento.hpp
  include/relatorio.hpp
