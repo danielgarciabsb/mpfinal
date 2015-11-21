@@ -1,6 +1,6 @@
 #include "projetoFinal.hpp"
 
-#define _TEST_MODE 0
+#define _TEST_MODE 1
 
 #if _TEST_MODE == 1
 
@@ -79,7 +79,7 @@ TEST(Elemento, InstanciarAndGetters)
 	posicao.x = 10;
 	posicao.y = 20;
 
-	Elemento* e = new Elemento("Elemento", posicao);
+	Elemento* e = new Elemento("Elemento", posicao, posicao);
 	
 	// Verificar instanciacao
 	ASSERT_TRUE(e != NULL);
@@ -93,15 +93,15 @@ TEST(Elemento, InstanciarAndGetters)
 		EXPECT_EQ("Elemento", e->getNome());
 	
 	// Verificar getPosicao
-	if(e->getPosicao().x == 10)
+	if(e->getPosicaoFinal().x == 10)
 		SUCCEED();
 	else
-		EXPECT_EQ(10, e->getPosicao().x);	
+		EXPECT_EQ(10, e->getPosicaoFinal().x);	
 	
-	if(e->getPosicao().y == 20)
+	if(e->getPosicaoFinal().y == 20)
 		SUCCEED();
 	else
-		EXPECT_EQ(20, e->getPosicao().y);
+		EXPECT_EQ(20, e->getPosicaoFinal().y);
 
 	delete e;
 }
@@ -111,7 +111,7 @@ TEST(Gerador, InstanciarAndGetters)
 	Elemento::Posicao posicao;
 	posicao.x = 10;
 	posicao.y = 20;
-	Gerador* g = new Gerador("Gerador", posicao, 100, 200);
+	Gerador* g = new Gerador("Gerador", posicao, posicao, 100, 200);
 	
 	// Verificar instanciacao
 	if(g != NULL)
@@ -126,15 +126,15 @@ TEST(Gerador, InstanciarAndGetters)
 		EXPECT_EQ("Gerador", g->getNome());
 	
 	// Verificar getPosicao
-	if(g->getPosicao().x == 10)
+	if(g->getPosicaoFinal().x == 10)
 		SUCCEED();
 	else
-		EXPECT_EQ(10, g->getPosicao().x);	
+		EXPECT_EQ(10, g->getPosicaoFinal().x);	
 		
-	if(g->getPosicao().y == 20)
+	if(g->getPosicaoFinal().y == 20)
 		SUCCEED();
 	else
-		EXPECT_EQ(20, g->getPosicao().y);
+		EXPECT_EQ(20, g->getPosicaoFinal().y);
 		
 	// Verificar Recurso Produzido
 	if(g->getRecursoProduzido() == 100)
@@ -154,7 +154,7 @@ TEST(Cidade, InstanciarAndGetters)
 	Elemento::Posicao posicao;
 	posicao.x = 10;
 	posicao.y = 20;
-	Cidade* c = new Cidade("Cidade", posicao, 100);
+	Cidade* c = new Cidade("Cidade", posicao, posicao, 100);
 	
 	// Verificar instanciacao
 	if(c != NULL)
@@ -169,15 +169,15 @@ TEST(Cidade, InstanciarAndGetters)
 		EXPECT_EQ("Cidade", c->getNome());
 		
 	// Verificar getPosicao	
-	if(c->getPosicao().x == 10)
+	if(c->getPosicaoFinal().x == 10)
 		SUCCEED();
 	else
-		EXPECT_EQ(10, c->getPosicao().x);
+		EXPECT_EQ(10, c->getPosicaoFinal().x);
 	
-	if(c->getPosicao().y == 20)
+	if(c->getPosicaoFinal().y == 20)
 		SUCCEED();
 	else
-		EXPECT_EQ(20, c->getPosicao().y);
+		EXPECT_EQ(20, c->getPosicaoFinal().y);
 			
 	// Verificar Recurso Necessario
 	if(c->getRecursoNecessario() == 100)
@@ -191,7 +191,7 @@ TEST(Adaptador, InstanciarAndGetters)
 	Elemento::Posicao posicao;
 	posicao.x = 10;
 	posicao.y = 20;
-	Adaptador* a = new Adaptador("Adaptador", posicao);
+	Adaptador* a = new Adaptador("Adaptador", posicao, posicao);
 	
 	// Verificar instanciacao
 	if(a != NULL)
@@ -206,15 +206,15 @@ TEST(Adaptador, InstanciarAndGetters)
 		EXPECT_EQ("Adaptador", a->getNome());
 		
 	// Verificar getPosicao	
-	if(a->getPosicao().x == 10)
+	if(a->getPosicaoFinal().x == 10)
 		SUCCEED();
 	else
-		EXPECT_EQ(10, a->getPosicao().x);
+		EXPECT_EQ(10, a->getPosicaoFinal().x);
 	
-	if(a->getPosicao().y == 20)
+	if(a->getPosicaoFinal().y == 20)
 		SUCCEED();
 	else
-		EXPECT_EQ(20, a->getPosicao().y);
+		EXPECT_EQ(20, a->getPosicaoFinal().y);
 }
 
 TEST(Interconexao, InstanciarAndGetters)
@@ -224,15 +224,6 @@ TEST(Interconexao, InstanciarAndGetters)
 	posicaoInicial.y = 20;
 	posicaoFinal.x = 30;
 	posicaoFinal.y = 40;
-	
-	Elemento::Posicao posicaoEmissor, posicaoReceptor;
-	posicaoEmissor.x = 50;
-	posicaoEmissor.y = 60;
-	posicaoReceptor.x = 70;
-	posicaoReceptor.y = 80;
-	
-	Elemento* emissor = new Elemento("Emissor", posicaoEmissor);
-	Elemento* receptor = new Elemento("Receptor", posicaoReceptor);
 	
 	Interconexao* i = new Interconexao("Interconexao", posicaoInicial, posicaoFinal, 100, 0.1, 200, 300);
 	
@@ -300,10 +291,10 @@ TEST(Repositorio, LeituraArquivo)
 	string nomeArq = "rede_distribuicao.conf";
 	Repositorio::lerElementos(nomeArq);
 	
-	vector<Gerador*> geradores = *(Repositorio::getGeradores());
-	vector<Cidade*> cidades = *(Repositorio::getCidades());
-	vector<Adaptador*> adaptadores = *(Repositorio::getAdaptadores());
-	vector<Interconexao*> interconexoes = *(Repositorio::getInterconexoes());
+	set<Gerador*> geradores = *(Repositorio::getGeradores());
+	set<Cidade*> cidades = *(Repositorio::getCidades());
+	set<Adaptador*> adaptadores = *(Repositorio::getAdaptadores());
+	set<Interconexao*> interconexoes = *(Repositorio::getInterconexoes());
 	
 	ifstream fin("rede_distribuicao.conf");
 	Elemento::Posicao posicao;
@@ -311,10 +302,10 @@ TEST(Repositorio, LeituraArquivo)
 	
 	bool erroLeitura = false;
 	
-	vector<Gerador*>::iterator iGeradores = geradores.begin();
-	vector<Cidade*>::iterator iCidades = cidades.begin();
-	vector<Adaptador*>::iterator iAdaptadores = adaptadores.begin();
-	vector<Interconexao*>::iterator iInterconexoes = interconexoes.begin();
+	set<Gerador*>::iterator iGeradores = geradores.begin();
+	set<Cidade*>::iterator iCidades = cidades.begin();
+	set<Adaptador*>::iterator iAdaptadores = adaptadores.begin();
+	set<Interconexao*>::iterator iInterconexoes = interconexoes.begin();
 	
 	while((iGeradores   != geradores.end() ||
 		   iCidades     != cidades.end() ||
