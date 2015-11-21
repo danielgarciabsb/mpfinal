@@ -198,5 +198,9 @@ int main(int argc, char **argv)
 	
 		// Mostrar relatorio parcial
 		Relatorio::mostrarRelatorio();
+		
+		// Esperar 1 segundo
+		clock_t start = clock();
+		while((clock() - start) / CLOCKS_PER_SEC < 1);
 	}
 }
