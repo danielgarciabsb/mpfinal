@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/igor/Área de Trabalho/ProjetoFinal/cidade/cidade.cpp
+/home/falbuquerque/Desktop/mpfinal/cidade/cidade.cpp
 cidade.hpp
-/home/igor/Área de Trabalho/ProjetoFinal/cidade/cidade.hpp
+/home/falbuquerque/Desktop/mpfinal/cidade/cidade.hpp
 
 include/cidade.hpp
 elemento.hpp

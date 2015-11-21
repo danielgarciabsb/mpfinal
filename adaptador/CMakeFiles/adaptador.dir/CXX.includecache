@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/igor/Área de Trabalho/ProjetoFinal/adaptador/adaptador.cpp
+/home/falbuquerque/Desktop/mpfinal/adaptador/adaptador.cpp
 adaptador.hpp
-/home/igor/Área de Trabalho/ProjetoFinal/adaptador/adaptador.hpp
+/home/falbuquerque/Desktop/mpfinal/adaptador/adaptador.hpp
 
 include/adaptador.hpp
 interconexao.hpp

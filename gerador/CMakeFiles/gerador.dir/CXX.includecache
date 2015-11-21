@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/igor/Área de Trabalho/ProjetoFinal/gerador/gerador.cpp
+/home/falbuquerque/Desktop/mpfinal/gerador/gerador.cpp
 gerador.hpp
-/home/igor/Área de Trabalho/ProjetoFinal/gerador/gerador.hpp
+/home/falbuquerque/Desktop/mpfinal/gerador/gerador.hpp
 
 include/cidade.hpp
 elemento.hpp

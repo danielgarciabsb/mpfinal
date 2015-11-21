@@ -1,0 +1,6 @@
+## Falha em /home/falbuquerque/Desktop/mpfinal/projetoFinal_testes.hpp:371
+Value of: erroLeitura
+  Actual: true
+Expected: false
+
+

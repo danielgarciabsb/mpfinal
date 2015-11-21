@@ -6,9 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/igor/Área de Trabalho/ProjetoFinal/relatorio/relatorio.cpp
+/home/falbuquerque/Desktop/mpfinal/relatorio/relatorio.cpp
 relatorio.hpp
-/home/igor/Área de Trabalho/ProjetoFinal/relatorio/relatorio.hpp
+/home/falbuquerque/Desktop/mpfinal/relatorio/relatorio.hpp
+fstream
+-
 
 include/cidade.hpp
 elemento.hpp

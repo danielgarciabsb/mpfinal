@@ -1,6 +1,6 @@
 #include "projetoFinal.hpp"
 
-#define _TEST_MODE 1
+#define _TEST_MODE 0
 
 #if _TEST_MODE == 1
 

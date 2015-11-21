@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/igor/Área de Trabalho/ProjetoFinal/elemento/elemento.cpp
+/home/falbuquerque/Desktop/mpfinal/elemento/elemento.cpp
 elemento.hpp
-/home/igor/Área de Trabalho/ProjetoFinal/elemento/elemento.hpp
+/home/falbuquerque/Desktop/mpfinal/elemento/elemento.hpp
 
 include/elemento.hpp
 iostream

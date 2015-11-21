@@ -1,4 +1,4 @@
-# Install script for directory: /home/igor/Área de Trabalho/ProjetoFinal
+# Install script for directory: /home/falbuquerque/Desktop/mpfinal
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -33,18 +33,18 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles/CMakeRelink.dir/projetoFinal")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/falbuquerque/Desktop/mpfinal/CMakeFiles/CMakeRelink.dir/projetoFinal")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/elemento/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/cidade/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/adaptador/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/gerador/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/interconexao/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/repositorio/cmake_install.cmake")
-  INCLUDE("/home/igor/Área de Trabalho/ProjetoFinal/relatorio/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/elemento/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/cidade/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/adaptador/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/gerador/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/interconexao/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/repositorio/cmake_install.cmake")
+  INCLUDE("/home/falbuquerque/Desktop/mpfinal/relatorio/cmake_install.cmake")
 
 ENDIF(NOT CMAKE_INSTALL_LOCAL_ONLY)
 
@@ -54,7 +54,7 @@ ELSE(CMAKE_INSTALL_COMPONENT)
   SET(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 ENDIF(CMAKE_INSTALL_COMPONENT)
 
-FILE(WRITE "/home/igor/Área de Trabalho/ProjetoFinal/${CMAKE_INSTALL_MANIFEST}" "")
+FILE(WRITE "/home/falbuquerque/Desktop/mpfinal/${CMAKE_INSTALL_MANIFEST}" "")
 FOREACH(file ${CMAKE_INSTALL_MANIFEST_FILES})
-  FILE(APPEND "/home/igor/Área de Trabalho/ProjetoFinal/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
+  FILE(APPEND "/home/falbuquerque/Desktop/mpfinal/${CMAKE_INSTALL_MANIFEST}" "${file}\n")
 ENDFOREACH(file)

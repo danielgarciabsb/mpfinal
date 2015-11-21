@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/igor/Área de Trabalho/ProjetoFinal"
+CMAKE_SOURCE_DIR = /home/falbuquerque/Desktop/mpfinal
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/igor/Área de Trabalho/ProjetoFinal"
+CMAKE_BINARY_DIR = /home/falbuquerque/Desktop/mpfinal
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -100,9 +100,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles" "/home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/falbuquerque/Desktop/mpfinal/CMakeFiles /home/falbuquerque/Desktop/mpfinal/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/igor/Área de Trabalho/ProjetoFinal/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/falbuquerque/Desktop/mpfinal/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
