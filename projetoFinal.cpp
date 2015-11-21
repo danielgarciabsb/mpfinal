@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	
 	#endif
 	
-	srand(1);
+	srand(time(NULL));
 	
 	// Metodo estatico para ler os elementos da rede e instanciar os objetos
 	Repositorio::lerElementos("rede_distribuicao.conf");
@@ -142,50 +142,52 @@ int main(int argc, char **argv)
 	cout << "\t\t>> OK\n\n" << endl; // Mensagem indicando fim de processamento
 	int i;
 	
-	for(i = 0; i < 2; i++)
+	int tempoSimulacao = 120;
+	for(i = 0; i < tempoSimulacao; i++)
 	{
-	// Calcular chance de falha das interconexoes (Feita apenas uma vez, com objetivo de verificar funcionamento)
-	// Esse processo sera feito para cada segundo da simulacao
-	for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++)
-		(*iInterconexoes)->aplicarChanceDeFalha();
+		cout << "\n\t===== Segundo atual: " << i + 1 << "=====" << endl;
+		// Calcular chance de falha das interconexoes (Feita apenas uma vez, com objetivo de verificar funcionamento)
+		// Esse processo sera feito para cada segundo da simulacao
+		for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++)
+			(*iInterconexoes)->aplicarChanceDeFalha();
 	
-	// Mostrar caminho percorrido pelas cargas (as funcoes responsaveis por essa funcionalidade estao
-	// imprimindo mensagem na tela com objetivo de verificar funcionamento)
-	// TIRAR EMISSOES DE MENSAGENS NA TELA DOS METODOS NAS CLASSES
-	set<Gerador*>::iterator iGeradores;
-	for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
-		(*iGeradores)->emitirCarga();
+		// Mostrar caminho percorrido pelas cargas (as funcoes responsaveis por essa funcionalidade estao
+		// imprimindo mensagem na tela com objetivo de verificar funcionamento)
+		// TIRAR EMISSOES DE MENSAGENS NA TELA DOS METODOS NAS CLASSES
+		set<Gerador*>::iterator iGeradores;
+		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
+			(*iGeradores)->emitirCarga();
 		
-	// Atualizar Relatorio
-	Relatorio::tempoTotal++;
-	// 	Atualizar carga total produzida e custo gerado pelos geradores
-	for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
-	{
-		Relatorio::cargaTotalProduzida += (*iGeradores)->getRecursoProduzido();
-		Relatorio::custoTotal += (*iGeradores)->getCustoGerador();
-	}
+		// Atualizar Relatorio
+		Relatorio::tempoTotal++;
+		// 	Atualizar carga total produzida e custo gerado pelos geradores
+		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
+		{
+			Relatorio::cargaTotalProduzida += (*iGeradores)->getRecursoProduzido();
+			Relatorio::custoTotal += (*iGeradores)->getCustoGerador();
+		}
 		
-	//	Atualizar carga total consumida, numero de cidades sem recurso e tempo sem recurso
-	set<Cidade*>::iterator iCidades;
-	for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
-	{
-		Relatorio::cargaTotalConsumida += (*iCidades)->getCarga();
-		if((*iCidades)->getCarga() < (*iCidades)->getRecursoNecessario())
+		//	Atualizar carga total consumida, numero de cidades sem recurso e tempo sem recurso
+		set<Cidade*>::iterator iCidades;
+		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
 		{
-			Relatorio::numCidadesMenosRecurso++;
-			Relatorio::tempoCidadesSemRecurso++;
+			Relatorio::cargaTotalConsumida += (*iCidades)->getCarga();
+			if((*iCidades)->getCarga() < (*iCidades)->getRecursoNecessario())
+			{
+				Relatorio::numCidadesMenosRecurso++;
+				Relatorio::tempoCidadesSemRecurso++;
+			}
+			if((*iCidades)->getCarga() < 0.3 * (float) (*iCidades)->getRecursoNecessario())
+			{
+				Relatorio::numCidadesAbaixo30++;
+				Relatorio::tempoCidadesAbaixo30++;
+			}
 		}
-		if((*iCidades)->getCarga() < 0.3 * (float) (*iCidades)->getRecursoNecessario())
-		{
-			Relatorio::numCidadesAbaixo30++;
-			Relatorio::tempoCidadesAbaixo30++;
-		}
-	}
 	
-	// Mostrar relatorio parcial
-	Relatorio::mostrarRelatorio();
+		// Mostrar relatorio parcial
+		Relatorio::mostrarRelatorio();
 	
-	// TODO: Por ultimo, deve-se "gastar" a carga que a cidade recebeu.
-	// O que voces acham que deve acontecer quando a cidade recebe mais que o recurso necessario?
+		// TODO: Por ultimo, deve-se "gastar" a carga que a cidade recebeu  de acordo com o recurso necessario.
+		// O que voces acham que deve acontecer quando a cidade recebe mais que o recurso necessario?
 	}
 }
