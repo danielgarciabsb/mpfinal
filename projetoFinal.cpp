@@ -142,7 +142,7 @@ int main(int argc, char **argv)
 	cout << "\t\t>> OK\n\n" << endl; // Mensagem indicando fim de processamento
 	int i;
 	
-	int tempoSimulacao = 120;
+	int tempoSimulacao = 5;
 	for(i = 0; i < tempoSimulacao; i++)
 	{
 		cout << "\n\t===== Segundo atual: " << i + 1 << "=====" << endl;
@@ -169,25 +169,34 @@ int main(int argc, char **argv)
 		
 		//	Atualizar carga total consumida, numero de cidades sem recurso e tempo sem recurso
 		set<Cidade*>::iterator iCidades;
+		
+		bool temMenosRecurso = false;
+		bool temAbaixo30 = false;
+			
 		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
 		{
 			Relatorio::cargaTotalConsumida += (*iCidades)->getCarga();
+			
 			if((*iCidades)->getCarga() < (*iCidades)->getRecursoNecessario())
 			{
-				Relatorio::numCidadesMenosRecurso++;
-				Relatorio::tempoCidadesSemRecurso++;
+				Relatorio::cidadesMenosRecurso.insert(*iCidades);
+				temMenosRecurso = true;
 			}
 			if((*iCidades)->getCarga() < 0.3 * (float) (*iCidades)->getRecursoNecessario())
 			{
-				Relatorio::numCidadesAbaixo30++;
-				Relatorio::tempoCidadesAbaixo30++;
+				Relatorio::cidadesAbaixo30.insert(*iCidades);
+				temAbaixo30 = true;
 			}
+			
+			(*iCidades)->consumirCarga();
 		}
+		
+		if(temMenosRecurso)
+			Relatorio::tempoCidadesSemRecurso++;
+		if(temAbaixo30)
+			Relatorio::tempoCidadesAbaixo30++;
 	
 		// Mostrar relatorio parcial
 		Relatorio::mostrarRelatorio();
-	
-		// TODO: Por ultimo, deve-se "gastar" a carga que a cidade recebeu  de acordo com o recurso necessario.
-		// O que voces acham que deve acontecer quando a cidade recebe mais que o recurso necessario?
 	}
 }

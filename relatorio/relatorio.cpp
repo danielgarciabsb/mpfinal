@@ -9,9 +9,9 @@ int Relatorio::numCidades;
 int Relatorio::cargaTotalConsumida;
 int Relatorio::tamanhoTotalInterconexoes;
 int Relatorio::numFalhasInterconexoes;
-int Relatorio::numCidadesMenosRecurso;
+set<Cidade*> Relatorio::cidadesMenosRecurso;
 int Relatorio::tempoCidadesSemRecurso;
-int Relatorio::numCidadesAbaixo30;
+set<Cidade*> Relatorio::cidadesAbaixo30;
 int Relatorio::tempoCidadesAbaixo30;
 
 void Relatorio::mostrarRelatorio()
@@ -25,10 +25,10 @@ void Relatorio::mostrarRelatorio()
 			"\nTamanho total das interconexoes: "   << Relatorio::tamanhoTotalInterconexoes <<
 			"\nNumero de falhas nas interconexoes: "<< Relatorio::numFalhasInterconexoes <<
 			"\nNumero de cidades que ficaram com menos recurso que o necessario: " 
-													<< Relatorio::numCidadesMenosRecurso <<
+													<< Relatorio::cidadesMenosRecurso.size() <<
 			"\nTempo que ficaram sem recurso: "     << Relatorio::tempoCidadesSemRecurso <<
 			"\nNumero de cidades que ficaram com menos de 30p.c. dos recursos: "
-													<< Relatorio::numCidadesAbaixo30 <<
+													<< Relatorio::cidadesAbaixo30.size() <<
 			"\nTempo que ficaram com menos de 30p.c. de recurso: "
 													<< Relatorio::tempoCidadesAbaixo30 
 													<< endl;

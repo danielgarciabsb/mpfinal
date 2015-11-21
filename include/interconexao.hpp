@@ -2,6 +2,7 @@
 #define _INTERCONEXAO_H
 
 #include "elemento.hpp"
+#include "relatorio.hpp"
 
 class Interconexao: public Elemento
 {

@@ -2,8 +2,8 @@
 #define _RELATORIO_H
 
 #include <iostream>
-
-using namespace std;
+#include "cidade.hpp"
+#include <set>
 
 class Relatorio
 {
@@ -16,10 +16,9 @@ class Relatorio
 		static int cargaTotalConsumida;
 		static int tamanhoTotalInterconexoes;
 		static int numFalhasInterconexoes;
-		static int numCidadesMenosRecurso;
-		static int numCidadesSemRecurso;
+		static set<Cidade*> cidadesMenosRecurso;
 		static int tempoCidadesSemRecurso;
-		static int numCidadesAbaixo30;
+		static set<Cidade*> cidadesAbaixo30;
 		static int tempoCidadesAbaixo30;
 		
 		static void mostrarRelatorio();		
