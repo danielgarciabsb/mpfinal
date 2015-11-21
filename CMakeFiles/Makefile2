@@ -84,6 +84,15 @@ CMakeFiles/projetoFinal.dir/rule: cmake_check_build_system
 projetoFinal: CMakeFiles/projetoFinal.dir/rule
 .PHONY : projetoFinal
 
+# Pre-install relink rule for target.
+CMakeFiles/projetoFinal.dir/preinstall:
+	$(MAKE) -f CMakeFiles/projetoFinal.dir/build.make CMakeFiles/projetoFinal.dir/preinstall
+.PHONY : CMakeFiles/projetoFinal.dir/preinstall
+
+# Prepare target for install.
+preinstall: CMakeFiles/projetoFinal.dir/preinstall
+.PHONY : preinstall
+
 # clean rule for target.
 CMakeFiles/projetoFinal.dir/clean:
 	$(MAKE) -f CMakeFiles/projetoFinal.dir/build.make CMakeFiles/projetoFinal.dir/clean

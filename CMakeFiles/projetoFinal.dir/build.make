@@ -97,6 +97,31 @@ projetoFinal: CMakeFiles/projetoFinal.dir/link.txt
 CMakeFiles/projetoFinal.dir/build: projetoFinal
 .PHONY : CMakeFiles/projetoFinal.dir/build
 
+# Object files for target projetoFinal
+projetoFinal_OBJECTS = \
+"CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o"
+
+# External object files for target projetoFinal
+projetoFinal_EXTERNAL_OBJECTS =
+
+CMakeFiles/CMakeRelink.dir/projetoFinal: CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o
+CMakeFiles/CMakeRelink.dir/projetoFinal: CMakeFiles/projetoFinal.dir/build.make
+CMakeFiles/CMakeRelink.dir/projetoFinal: /usr/lib/libgtest.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: elemento/libelemento.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: cidade/libcidade.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: adaptador/libadaptador.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: gerador/libgerador.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: interconexao/libinterconexao.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: repositorio/librepositorio.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: relatorio/librelatorio.a
+CMakeFiles/CMakeRelink.dir/projetoFinal: CMakeFiles/projetoFinal.dir/relink.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable CMakeFiles/CMakeRelink.dir/projetoFinal"
+	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/projetoFinal.dir/relink.txt --verbose=$(VERBOSE)
+
+# Rule to relink during preinstall.
+CMakeFiles/projetoFinal.dir/preinstall: CMakeFiles/CMakeRelink.dir/projetoFinal
+.PHONY : CMakeFiles/projetoFinal.dir/preinstall
+
 CMakeFiles/projetoFinal.dir/requires: CMakeFiles/projetoFinal.dir/projetoFinal.cpp.o.requires
 .PHONY : CMakeFiles/projetoFinal.dir/requires
 
