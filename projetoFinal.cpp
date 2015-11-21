@@ -7,6 +7,7 @@ int main(int argc, char **argv)
 {
 	#if _TEST_MODE == 1
 	
+	
 	testing::InitGoogleTest(&argc, argv);
 	
 	UnitTest& unit_test = *UnitTest::GetInstance();
@@ -22,19 +23,17 @@ int main(int argc, char **argv)
 	
 	srand(1);
 	
+	// Metodo estatico para ler os elementos da rede e instanciar os objetos
 	Repositorio::lerElementos("rede_distribuicao.conf");
 	
+	// Referenciar os objetos para uso no programa
 	set<Elemento*> elementos = *(Repositorio::getElementos());
 	set<Cidade*> cidades = *(Repositorio::getCidades());
 	set<Gerador*> geradores = *(Repositorio::getGeradores());
 	set<Adaptador*> adaptadores = *(Repositorio::getAdaptadores());
 	set<Interconexao*> interconexoes = *(Repositorio::getInterconexoes());
 	
-	/*cout << "\n\t>> Cidades:" << endl;
-	vector<Cidade*>::iterator iCidades;
-	for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
-		cout << "\t\t- " << (*iCidades)->getNome() << endl;*/
-	
+	// Mostrar todos os elementos da rede
 	cout << "\n\t>> Elementos:" << endl;
 	set<Elemento*>::iterator iElementos;
 	for(iElementos = elementos.begin(); iElementos != elementos.end(); iElementos++)
@@ -42,58 +41,87 @@ int main(int argc, char **argv)
 		cout << "\t\t- " << (*iElementos)->getNome() << endl;
 	}
 		
-	cout << "\n\t>> Calculando conexoes..." << endl;
+	// Descobrir as conexoes entre os elementos
+	cout << "\n\n\t>> Calculando conexoes..." << endl;
 	set<Interconexao*>::iterator iInterconexoes;
-	int numInterconexoes = interconexoes.size();
-	int progresso = 0;
+
 	for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++)
 	{
 		// Conectar saidas dos Geradores às interconexoes
 		set<Gerador*>::iterator iGeradores;
 		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
 		{
+			// Se a posicao do gerador for a mesma que a posicao inicial da interconexao da iteracao:
+			//		-> entao a saida do gerador eh a interconexao da iteracao
+			// G ------> I (o contrario nao eh possivel)
 			if((*iGeradores)->getPosicaoFinal().x == (*iInterconexoes)->getPosicaoInicial().x &&
 				(*iGeradores)->getPosicaoFinal().y == (*iInterconexoes)->getPosicaoInicial().y)
 			{
 				(*iGeradores)->getSaidas()->insert(*iInterconexoes);
 			}
-		}
+		} // fim do For: nesse ponto, os geradores ja possuem saidas definidas
 		
-		// Conectar saidas dos Adaptadores às interconexoes
+		// Conectar Adaptadores às interconexoes
 		set<Adaptador*>::iterator iAdaptadores;
 		for(iAdaptadores = adaptadores.begin(); iAdaptadores != adaptadores.end(); iAdaptadores++)
 		{
+			// Se a posicao do adaptador for a mesma que a posicao inicial da interconexao da iteracao:
+			//		-> entao a saida do adaptador eh a interconexao da iteracao
+			// A -------> I
 			if((*iAdaptadores)->getPosicaoFinal().x == (*iInterconexoes)->getPosicaoInicial().x &&
 				(*iAdaptadores)->getPosicaoFinal().y == (*iInterconexoes)->getPosicaoInicial().y)
 			{
 				(*iAdaptadores)->getSaidas()->insert(*iInterconexoes);
 			}
 			
+			// Se a posicao do adaptador for a mesma que a posicao final da interconexao da iteracao,
+			//		E
+			// Se a interconexao nao tiver uma saida ja definida (interconexao possui apenas 1 saida):
+			//		-> entao a saida da interconexao eh o adaptador da iteracao
+			// I -------> A
 			if((*iAdaptadores)->getPosicaoFinal().x == (*iInterconexoes)->getPosicaoFinal().x &&
 				(*iAdaptadores)->getPosicaoFinal().y == (*iInterconexoes)->getPosicaoFinal().y &&
 				(*iInterconexoes)->getSaidas()->size() == 0)
 			{
 				(*iInterconexoes)->getSaidas()->insert(*iAdaptadores);
 			}
-		}
+			// Nota: como os geradores nao possuem entradas (apenas saidas), nesse ponto, apenas adaptadores
+			// podem ser saidas das interconexoes. Se, por acaso, alguma cidade ou outra interconexao estiver
+			// em posicao de ligacao com alguma interconexao que ja tenha uma saida definida, 
+			// a preferencia sera dada aos adaptadores, ignorando que aquela cidade ou outra interconexao esteja
+			// conectada a interconexao.
+			// DISCUTIR A QUAL ELEMENTO DAREMOS PREFERENCIA NO CASO DE UMA INTERCONEXAO ESTIVER CONECTADA A MAIS 
+			// DE UM ELEMENTO.
+		}// fim das conexoes entre adaptadores e interconexoes
 		
 		// Conectar Cidades às interconexoes
 		set<Cidade*>::iterator iCidades;
 		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
 		{
+			// Se a posicao da cidade for a mesma que a posicao final da interconexao da iteracao
+			//   E
+			// Se a saida da interconexao nao tiver uma saida definida:
+			//		-> entao a saida da interconexao eh a cidade da iteracao
+			// I -------> C (o contrario nao eh possivel)
 			if((*iCidades)->getPosicaoFinal().x == (*iInterconexoes)->getPosicaoFinal().x &&
 				(*iCidades)->getPosicaoFinal().y == (*iInterconexoes)->getPosicaoFinal().y &&
 				(*iInterconexoes)->getSaidas()->size() == 0)
 			{
 				(*iInterconexoes)->getSaidas()->insert(*iCidades);
 			}
-			
-		}
+			// Nota: Cidades nao possuem saidas (apenas entradas), entao a unica possibilidade de conexao
+			// nesse caso eh a cidade sendo saida da interconexao
+		}// fim das conexoes entre cidades e interconexoes
 		
 		// Conectar interconexoes às outras interconexoes
 		set<Interconexao*>::iterator iOutras;
 		for(iOutras = interconexoes.begin(); iOutras != interconexoes.end(); iOutras++)
 		{
+			// Se a posicao inicial de uma interconexao for igual a posicao final de outra
+			// I1 (pFinal) -------> I2 (pInicial)
+			//		E
+			// I1 (pFinal) nao tiver uma saida ja definida:
+			//		-> entao saida de I1 eh I2
 			if((*iOutras)->getPosicaoInicial().x == (*iInterconexoes)->getPosicaoFinal().x &&
 				(*iOutras)->getPosicaoInicial().y == (*iInterconexoes)->getPosicaoFinal().y &&
 				(*iInterconexoes)->getSaidas()->size() == 0)
@@ -101,36 +129,26 @@ int main(int argc, char **argv)
 				(*iInterconexoes)->getSaidas()->insert(*iOutras);
 			}
 			
+			// Caso contrario ao de cima
+			// I2(pFinal) --------> I1 (pInicial)
 			if((*iOutras)->getPosicaoFinal().x == (*iInterconexoes)->getPosicaoInicial().x &&
 				(*iOutras)->getPosicaoFinal().y == (*iInterconexoes)->getPosicaoInicial().y &&
 				(*iOutras)->getSaidas()->size() == 0)
 			{
 				(*iOutras)->getSaidas()->insert(*iInterconexoes);
 			}
-		}
-		/*for(iElementos = elementos.begin(); iElementos != elementos.end(); iElementos++)
-		{
-			// Verificar se o ponto inicial da interconexao eh saida de algum elemento
-			if(((*iInterconexoes)->getPosicaoInicial().x == (*iElementos)->getPosicaoFinal().x) &&
-			   ((*iInterconexoes)->getPosicaoInicial().y == (*iElementos)->getPosicaoFinal().y) )
-			{
-				
-		  		(*iElementos)->getSaidas()->insert(*iInterconexoes);
-		  	}
-		  	
-		  	// Verificar se o ponto final da interconexao se conecta a algum elemento
-		  	if((*iInterconexoes)->getPosicaoFinal().x == (*iElementos)->getPosicaoInicial().x &&
-		  	   (*iInterconexoes)->getPosicaoFinal().y == (*iElementos)->getPosicaoInicial().y)
-		  	{
-		  		(*iInterconexoes)->getSaidas()->insert(*iElementos);
-		  	}
-		}*/
+		}// fim das conexoes entre interconexoes
 	}
-	cout << "\t\t>> OK" << endl;
+	cout << "\t\t>> OK\n\n" << endl; // Mensagem indicando fim de processamento
 	
+	// Calcular chance de falha das interconexoes (Feita apenas uma vez, com objetivo de verificar funcionamento)
+	// Esse processo sera feito para cada segundo da simulacao
 	for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++)
 		(*iInterconexoes)->aplicarChanceDeFalha();
 	
+	// Mostrar caminho percorrido pelas cargas (as funcoes responsaveis por essa funcionalidade estao
+	// imprimindo mensagem na tela com objetivo de verificar funcionamento)
+	// TIRAR EMISSOES DE MENSAGENS NA TELA DOS METODOS NAS CLASSES
 	set<Gerador*>::iterator iGeradores;
 	for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
 		(*iGeradores)->emitirCarga();
