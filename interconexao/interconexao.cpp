@@ -24,7 +24,7 @@ void Interconexao::aplicarChanceDeFalha()
 		cout << "- " << this->getNome() << " falhou" << endl;
 		Relatorio::numFalhasInterconexoes++;
 		Relatorio::custoTotal += this->custoConserto;
-		this->previsaoTerminoConserto = 20;
+		this->previsaoTerminoConserto = this->tempoConserto;
 		this->working = false;
 	}
 	else if(--(this->previsaoTerminoConserto) == 0)
