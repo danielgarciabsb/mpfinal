@@ -8,6 +8,12 @@ set<Adaptador*> Repositorio::adaptadores;
 set<Cidade*> Repositorio::cidades;
 set<Interconexao*> Repositorio::interconexoes;
 
+set<Elemento*> Repositorio::elementosDesconectados;
+set<Cidade*> Repositorio::cidadesDesconectadas;
+set<Gerador*> Repositorio::geradoresDesconectados;
+set<Adaptador*> Repositorio::adaptadoresDesconectados;
+set<Interconexao*> Repositorio::interconexoesDesconectadas;
+
 //int Repositorio::numGeradores;
 
 void Repositorio::lerElementos(string nomeArquivo)

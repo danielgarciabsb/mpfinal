@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/falbuquerque/Desktop/mpfinal/repositorio/repositorio.cpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/repositorio/repositorio.cpp
 repositorio.hpp
-/home/falbuquerque/Desktop/mpfinal/repositorio/repositorio.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/repositorio/repositorio.hpp
 fstream
 -
 cmath

@@ -6,25 +6,25 @@
 
 #IncludeRegexTransform: 
 
-/home/falbuquerque/Desktop/mpfinal/projetoFinal.cpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal.cpp
 projetoFinal_testes.hpp
-/home/falbuquerque/Desktop/mpfinal/projetoFinal_testes.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal_testes.hpp
 projetoFinal.hpp
-/home/falbuquerque/Desktop/mpfinal/projetoFinal.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal.hpp
 ctime
 -
 cstdlib
 -
 
-/home/falbuquerque/Desktop/mpfinal/projetoFinal.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal.hpp
 repositorio.hpp
-/home/falbuquerque/Desktop/mpfinal/repositorio.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/repositorio.hpp
 
-/home/falbuquerque/Desktop/mpfinal/projetoFinal_testes.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal_testes.hpp
 projetoFinal.hpp
-/home/falbuquerque/Desktop/mpfinal/projetoFinal.hpp
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/projetoFinal.hpp
 gtest/gtest.h
-/home/falbuquerque/Desktop/mpfinal/gtest/gtest.h
+/home/igor/Área de Trabalho/mpFelioe/mpfinal/gtest/gtest.h
 
 include/adaptador.hpp
 interconexao.hpp

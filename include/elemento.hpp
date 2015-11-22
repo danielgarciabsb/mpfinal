@@ -19,6 +19,7 @@ class Elemento
 		string getNome();
 		Posicao getPosicaoInicial();
 		Posicao getPosicaoFinal();
+		set<Elemento*> * getEntradas();
 		set<Elemento*> * getSaidas();
 		int getCarga();
 		void setCarga(int carga);
@@ -28,6 +29,7 @@ class Elemento
 		Posicao posicaoInicial;
 		Posicao posicaoFinal;
 		int carga;
+		set<Elemento*> entradas;
 		set<Elemento*> saidas;
 				
 	public:		

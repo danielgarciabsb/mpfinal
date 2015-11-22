@@ -18,6 +18,11 @@ class Repositorio
 		static set<Cidade*> cidades;
 		static set<Interconexao*> interconexoes;
 		
+		static set<Elemento*> elementosDesconectados;
+		static set<Cidade*> cidadesDesconectadas;
+		static set<Gerador*> geradoresDesconectados;
+		static set<Adaptador*> adaptadoresDesconectados;
+		static set<Interconexao*> interconexoesDesconectadas;
 		
 	public:
 		static set<Elemento*> * getElementos() { return &Repositorio::elementos; }
@@ -25,6 +30,12 @@ class Repositorio
 		static set<Adaptador*> * getAdaptadores() { return &Repositorio::adaptadores; }
 		static set<Cidade*> * getCidades() { return &Repositorio::cidades; }
 		static set<Interconexao*> * getInterconexoes() { return &Repositorio::interconexoes; }
+		
+		static set<Elemento*> * getElementosDesconectados() { return &Repositorio::elementosDesconectados; }
+		static set<Gerador*> * getGeradoresDesconectados() { return &Repositorio::geradoresDesconectados; }
+		static set<Cidade*> * getCidadesDesconectadas() { return &Repositorio::cidadesDesconectadas; }
+		static set<Adaptador*> * getAdaptadoresDesconectados() { return &Repositorio::adaptadoresDesconectados; }
+		static set<Interconexao*> * getInterconexoesDesconectadas() { return &Repositorio::interconexoesDesconectadas; }
 		
 		static void lerElementos(string nomeArquivo);
 };
