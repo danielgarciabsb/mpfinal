@@ -26,9 +26,9 @@ class Cidade : public Elemento
 		
 		void receberCarga(int carga) 
 		{ 
-			if(this->getCarga() + carga > this->recursoNecessario)
-				this->setCarga(this->recursoNecessario);
-			else
+			//if(this->getCarga() + carga > this->recursoNecessario)
+				//this->setCarga(this->recursoNecessario);
+			//else
 				this->setCarga(this->getCarga() + carga); 
 				
 			cout << "- " << this->getNome() << " recebeu +" << carga << " de carga (Total: " << this->getCarga() << ")" << endl;
