@@ -1,2 +1,0 @@
-/usr/bin/ar cr libgerador.a  CMakeFiles/gerador.dir/gerador.cpp.o
-/usr/bin/ranlib libgerador.a

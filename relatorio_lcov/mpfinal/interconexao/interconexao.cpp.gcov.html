@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - lcov_projeto_mp.info - mpfinal/interconexao/interconexao.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">mpfinal/interconexao</a> - interconexao.cpp<span style="font-size: 80%;"> (source / <a href="interconexao.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">lcov_projeto_mp.info</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">36</td>
+            <td class="headerCovTableEntry">42</td>
+            <td class="headerCovTableEntryMed">85.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2015-11-23</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">8</td>
+            <td class="headerCovTableEntry">11</td>
+            <td class="headerCovTableEntryLo">72.7 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">          Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>            : #include &quot;interconexao.hpp&quot;</a>
+<span class="lineNum">       2 </span>            : #include &lt;cstdlib&gt;
+<span class="lineNum">       3 </span>            : 
+<span class="lineNum">       4 </span>            : //string Interconexao::getNome() { return this-&gt;nome; }
+<span class="lineNum">       5 </span>            : 
+<span class="lineNum">       6 </span>            : //Elemento::Posicao Interconexao::getPosicaoInicial() { return this-&gt;posicaoInicial; }
+<span class="lineNum">       7 </span>            : 
+<a name="8"><span class="lineNum">       8 </span>            : //Elemento::Posicao Interconexao::getPosicaoFinal() { return ((Elemento* )this)-&gt;getPosicaoFinal(); }</a>
+<span class="lineNum">       9 </span>            : 
+<a name="10"><span class="lineNum">      10 </span><span class="lineCov">         74 : int Interconexao::getCapacidadeMax() { return this-&gt;capacidadeMax; }</span></a>
+<span class="lineNum">      11 </span>            : 
+<a name="12"><span class="lineNum">      12 </span><span class="lineNoCov">          0 : float Interconexao::getChanceFalha() { return this-&gt;chanceFalha; }</span></a>
+<span class="lineNum">      13 </span>            : 
+<a name="14"><span class="lineNum">      14 </span><span class="lineNoCov">          0 : int Interconexao::getTempoConserto() { return this-&gt;tempoConserto; }</span></a>
+<span class="lineNum">      15 </span>            : 
+<a name="16"><span class="lineNum">      16 </span><span class="lineNoCov">          0 : int Interconexao::getCustoConserto() { return this-&gt;custoConserto; }</span></a>
+<span class="lineNum">      17 </span>            : 
+<span class="lineNum">      18 </span><span class="lineCov">         27 : void Interconexao::aplicarChanceDeFalha()</span>
+<span class="lineNum">      19 </span>            : {
+<span class="lineNum">      20 </span><span class="lineCov">         27 :         float num = ((float) rand()) / RAND_MAX;</span>
+<span class="lineNum">      21 </span>            :         
+<span class="lineNum">      22 </span>            :         // Trata a falha de um interconexão.
+<span class="lineNum">      23 </span><span class="lineCov">         27 :         if((this-&gt;chanceFalha &gt; 0.) &amp;&amp; (num &lt;= this-&gt;chanceFalha) &amp;&amp; this-&gt;working)</span>
+<span class="lineNum">      24 </span>            :         {
+<span class="lineNum">      25 </span><span class="lineCov">          1 :                 cout &lt;&lt; &quot;- &quot; &lt;&lt; this-&gt;getNome() &lt;&lt; &quot; falhou&quot; &lt;&lt; endl;</span>
+<span class="lineNum">      26 </span><span class="lineCov">          1 :                 Relatorio::numFalhasInterconexoes++;</span>
+<span class="lineNum">      27 </span><span class="lineCov">          1 :                 Relatorio::custoTotal += this-&gt;custoConserto;</span>
+<span class="lineNum">      28 </span><span class="lineCov">          1 :                 this-&gt;previsaoTerminoConserto = this-&gt;tempoConserto;</span>
+<span class="lineNum">      29 </span><span class="lineCov">          1 :                 this-&gt;working = false;</span>
+<span class="lineNum">      30 </span>            :         }
+<span class="lineNum">      31 </span><span class="lineCov">         26 :         else if((this-&gt;previsaoTerminoConserto)-- == 0)</span>
+<span class="lineNum">      32 </span><span class="lineCov">          9 :                 this-&gt;working = true;</span>
+<span class="lineNum">      33 </span><span class="lineCov">         17 :         else if(this-&gt;previsaoTerminoConserto &gt; 0)</span>
+<span class="lineNum">      34 </span>            :         {
+<span class="lineNum">      35 </span><span class="lineNoCov">          0 :                 cout &lt;&lt; &quot;- &quot; &lt;&lt; this-&gt;getNome() </span>
+<span class="lineNum">      36 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot; esta em conserto (previsao de termino: &quot; &lt;&lt; this-&gt;previsaoTerminoConserto </span>
+<span class="lineNum">      37 </span><span class="lineNoCov">          0 :                 &lt;&lt; &quot;)&quot; &lt;&lt; endl;</span>
+<span class="lineNum">      38 </span>            :         }
+<span class="lineNum">      39 </span>            :                 
+<span class="lineNum">      40 </span><span class="lineCov">         27 :         if(this-&gt;getSaidas()-&gt;size() == 0)</span>
+<span class="lineNum">      41 </span><span class="lineCov">          3 :                 this-&gt;working = false;</span>
+<a name="42"><span class="lineNum">      42 </span><span class="lineCov">         27 : }</span></a>
+<span class="lineNum">      43 </span>            : 
+<a name="44"><span class="lineNum">      44 </span><span class="lineCov">         78 : bool Interconexao::isWorking() { return this-&gt;working; }</span></a>
+<span class="lineNum">      45 </span>            : 
+<span class="lineNum">      46 </span><span class="lineCov">         39 : void Interconexao::transmitirCarga(int carga)</span>
+<span class="lineNum">      47 </span>            : {
+<span class="lineNum">      48 </span><span class="lineCov">         39 :         this-&gt;receberCarga(carga);</span>
+<span class="lineNum">      49 </span><span class="lineCov">         39 :         Elemento::transmitirCarga(this-&gt;getCarga());</span>
+<span class="lineNum">      50 </span><span class="lineCov">         39 :         this-&gt;emitirCarga();</span>
+<a name="51"><span class="lineNum">      51 </span><span class="lineCov">         39 : }</span></a>
+<span class="lineNum">      52 </span>            : 
+<span class="lineNum">      53 </span><span class="lineCov">         39 : void Interconexao::emitirCarga()</span>
+<span class="lineNum">      54 </span>            : {
+<span class="lineNum">      55 </span><span class="lineCov">         39 :         set&lt;Elemento*&gt; * saidas = this-&gt;getSaidas();</span>
+<span class="lineNum">      56 </span>            :         
+<span class="lineNum">      57 </span><span class="lineCov">         39 :         set&lt;Elemento*&gt;::iterator iSaidas;</span>
+<span class="lineNum">      58 </span><span class="lineCov">         75 :         for(iSaidas = saidas-&gt;begin(); iSaidas != saidas-&gt;end(); iSaidas++)</span>
+<span class="lineNum">      59 </span><span class="lineCov">         36 :                 (*iSaidas)-&gt;transmitirCarga(this-&gt;getCarga());</span>
+<span class="lineNum">      60 </span>            :         
+<a name="61"><span class="lineNum">      61 </span><span class="lineCov">         39 : } ;</span></a>
+<span class="lineNum">      62 </span>            : 
+<span class="lineNum">      63 </span><span class="lineCov">         39 : void Interconexao::receberCarga(int carga) </span>
+<span class="lineNum">      64 </span>            : {       // Caso a interconexão NÃO esteja funcionando.        
+<span class="lineNum">      65 </span><span class="lineCov">         39 :         if(!this-&gt;isWorking())</span>
+<span class="lineNum">      66 </span>            :         {
+<span class="lineNum">      67 </span><span class="lineCov">          4 :                 this-&gt;setCarga(0);</span>
+<span class="lineNum">      68 </span><span class="lineCov">         43 :                 return;</span>
+<span class="lineNum">      69 </span>            :         }
+<span class="lineNum">      70 </span>            :         
+<span class="lineNum">      71 </span>            :         // Caso a interconeão esteja funcionando e receba uma carga maior que sua capacidade.
+<span class="lineNum">      72 </span><span class="lineCov">         35 :         if(carga &gt; this-&gt;capacidadeMax)</span>
+<span class="lineNum">      73 </span><span class="lineCov">          5 :                 this-&gt;setCarga(this-&gt;capacidadeMax);</span>
+<span class="lineNum">      74 </span>            :         // Caso a interconeão esteja funcionando e receba uma carga menor que sua capacidade.
+<span class="lineNum">      75 </span>            :         else                            
+<span class="lineNum">      76 </span><span class="lineCov">         30 :                 this-&gt;setCarga(carga); </span>
+<a name="77"><span class="lineNum">      77 </span>            :         </a>
+<span class="lineNum">      78 </span><span class="lineCov">         35 :         Elemento::receberCarga(this-&gt;getCarga());</span>
+<span class="lineNum">      79 </span><span class="lineCov">          3 : } ;</span>
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.10</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

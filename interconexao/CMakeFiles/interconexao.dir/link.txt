@@ -1,2 +1,0 @@
-/usr/bin/ar cr libinterconexao.a  CMakeFiles/interconexao.dir/interconexao.cpp.o
-/usr/bin/ranlib libinterconexao.a

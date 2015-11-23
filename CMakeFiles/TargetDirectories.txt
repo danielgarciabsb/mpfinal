@@ -1,9 +1,0 @@
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/adaptador/CMakeFiles/adaptador.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/cidade/CMakeFiles/cidade.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/elemento/CMakeFiles/elemento.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/gerador/CMakeFiles/gerador.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/interconexao/CMakeFiles/interconexao.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/CMakeFiles/projetoFinal.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/CMakeFiles/projetoFinal_coverage.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/relatorio/CMakeFiles/relatorio.dir
-/home/igor/Área de Trabalho/mpFelioe/mpfinal/repositorio/CMakeFiles/repositorio.dir

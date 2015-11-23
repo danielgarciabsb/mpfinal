@@ -1,1 +1,0 @@
-make rede_distribuicao_coverage
