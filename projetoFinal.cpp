@@ -21,7 +21,7 @@ int main(int argc, char **argv)
 	
 	#endif
 	
-	srand(time(NULL));
+	srand(1);
 	
 	// Metodo estatico para ler os elementos da rede e instanciar os objetos
 	Repositorio::lerElementos("rede_distribuicao.conf");
@@ -242,31 +242,34 @@ int main(int argc, char **argv)
 		
 		//	Atualizar carga total consumida, numero de cidades sem recurso e tempo sem recurso
 		
-		bool temMenosRecurso = false;
-		bool temAbaixo30 = false;
+		//bool temMenosRecurso = false;
+		//bool temAbaixo30 = false;
 			
 		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
 		{
-			Relatorio::cargaTotalConsumida += (*iCidades)->getCarga();
+			Relatorio::cargaTotalConsumida += (*iCidades)->getCarga() > (*iCidades)->getRecursoNecessario() ? 
+												(*iCidades)->getRecursoNecessario() : (*iCidades)->getCarga();
 			
 			if((*iCidades)->getCarga() < (*iCidades)->getRecursoNecessario())
 			{
 				Relatorio::cidadesMenosRecurso.insert(*iCidades);
-				temMenosRecurso = true;
+				Relatorio::tempoCidadesSemRecurso++;
+				//temMenosRecurso = true;
 			}
 			if((*iCidades)->getCarga() < 0.3 * (float) (*iCidades)->getRecursoNecessario())
 			{
 				Relatorio::cidadesAbaixo30.insert(*iCidades);
-				temAbaixo30 = true;
+				Relatorio::tempoCidadesAbaixo30++;
+				//temAbaixo30 = true;
 			}
 			
 			(*iCidades)->consumirCarga();
 		}
 		
-		if(temMenosRecurso)
-			Relatorio::tempoCidadesSemRecurso++;
-		if(temAbaixo30)
-			Relatorio::tempoCidadesAbaixo30++;
+		//if(temMenosRecurso)
+			//Relatorio::tempoCidadesSemRecurso++;
+		//if(temAbaixo30)
+			//Relatorio::tempoCidadesAbaixo30++;
 	
 		// Mostrar relatorio parcial
 		Relatorio::mostrarRelatorio();
