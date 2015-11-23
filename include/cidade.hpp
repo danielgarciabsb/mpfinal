@@ -25,7 +25,7 @@ class Cidade : public Elemento
 		
 		void receberCarga(int carga) ;
 		
-		// A cidade não emite carga.
+		// A cidade não emite carga, por isso o método está definido como vazio.
 		void emitirCarga() { return; } ;
 };
 
