@@ -7,6 +7,8 @@
 #include "cidade.hpp"
 #include "interconexao.hpp"
 #include <fstream>
+#include <iostream>
+#include <cmath>
 
 
 class Repositorio
@@ -37,7 +39,7 @@ class Repositorio
 		static set<Adaptador*> * getAdaptadoresDesconectados() { return &Repositorio::adaptadoresDesconectados; }
 		static set<Interconexao*> * getInterconexoesDesconectadas() { return &Repositorio::interconexoesDesconectadas; }
 		
-		static void lerElementos(string nomeArquivo);
+		static void lerElementos();
 };
 
 #endif // _REPOSITORIO_H

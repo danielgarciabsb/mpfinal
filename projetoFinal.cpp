@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	srand(time(NULL));
 	
 	// Metodo estatico para ler os elementos da rede e instanciar os objetos
-	Repositorio::lerElementos("rede_distribuicao.conf");
+	Repositorio::lerElementos();
 	
 	// Referenciar os objetos para uso no programa
 	set<Elemento*> elementos = *(Repositorio::getElementos());
@@ -216,7 +216,11 @@ int main(int argc, char **argv)
 	
 	int i;
 	
-	int tempoSimulacao = 5;
+	int tempoSimulacao = 0;
+
+	cout << "Digite o tempo de simulação:\n";
+	cin >> tempoSimulacao;
+	
 	for(i = 0; i < tempoSimulacao; i++)
 	{
 		cout << "\n\t===== Segundo atual: " << i + 1 << "=====" << endl;

@@ -1,6 +1,4 @@
 #include "repositorio.hpp"
-#include <fstream>
-#include <cmath>
 
 set<Elemento*> Repositorio::elementos;
 set<Gerador*> Repositorio::geradores;
@@ -16,8 +14,13 @@ set<Interconexao*> Repositorio::interconexoesDesconectadas;
 
 //int Repositorio::numGeradores;
 
-void Repositorio::lerElementos(string nomeArquivo)
+void Repositorio::lerElementos()
 {
+	string nomeArquivo;
+
+	cout << "Digite o nome do arquivo de entrada:\n";
+	cin >> nomeArquivo; 
+
 	ifstream fin(nomeArquivo.c_str());
 	char identificador;
 	
