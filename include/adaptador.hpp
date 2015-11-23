@@ -9,41 +9,13 @@ class Adaptador : public Elemento
 		Adaptador(string nome, Elemento::Posicao posicaoInicial, Elemento::Posicao posicaoFinal) :
 		Elemento(nome, posicaoInicial, posicaoFinal) {} ;
 		
-		void transmitirCarga(int carga)
-		{
-			this->receberCarga(carga);
-			Elemento::transmitirCarga(this->getCarga());
-			this->emitirCarga();
-		} ;
+		void transmitirCarga(int carga) ;
 		
-		void emitirCarga() 
-		{ 
-			set<Elemento*> * saidas = this->getSaidas();
-			int totalCargaSaidas = 0;
-			float proporcao;
-	
-			set<Elemento*>::iterator iSaidas;
-			for(iSaidas = saidas->begin(); iSaidas != saidas->end(); iSaidas++)
-			{
-				if(((Interconexao*)(*iSaidas))->isWorking())
-					totalCargaSaidas += ((Interconexao*)(*iSaidas))->getCapacidadeMax();
-			}
-				
-			for(iSaidas = saidas->begin(); iSaidas != saidas->end(); iSaidas++)
-			{
-				//if((*iSaidas)->isWorking())
-					proporcao = (float) ((Interconexao*)(*iSaidas))->getCapacidadeMax() / totalCargaSaidas;
-				//else
-					//proporcao = 0;
-				(*iSaidas)->transmitirCarga((int) (proporcao * this->getCarga()));
-			}
-		} ;
+		// A carga emitida para cada interconexão é dada pela fórmula:
+		// (carga * max_interJ) / (max_inter1 + max_inter2 + ..... + max_interN)
+		void emitirCarga() ;
 
-		void receberCarga(int carga) 
-		{ 
-			this->setCarga(carga); 
-		} ;
-		
+		void receberCarga(int carga) ;
 };
 
 #endif // _ADAPTADOR_H

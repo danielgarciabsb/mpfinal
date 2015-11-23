@@ -1,0 +1,50 @@
+Criando testes de acordo com a especificação e com execessões que podem ocorrer.
+
+########################### Massa de testes ###########################
+1. Adaptador
+1.1. Testar um caso esperado.
+1.2. Um adaptador pode ter uma entrada e não ter uma saída?
+1.3. Um adaptador pode não ter uma entrada e ter uma saída?
+1.4. Testar a divisão de carga.
+1.5. Um adaptador pode não possuir nada conectado a ele? Quais são os valores das variáveis quando isso ocorre?
+1.6 O que ocorre quando se tenta conectar mais de uma interconexão a um gerador?
+
+## Cidade
+1.1. Testar um caso esperado.
+1.2. Uma cidade pode não ter nenhuma interconexão conectada a ela?
+1.3. O que ocorre quando uma cidade recebe menos de 30% da carga necesária?
+1.4. O que ocorre quando uma cidade recebe mais que a carga necessária?
+1.5. Uma cidade pode não possuir nada conectado a ela? Quais são os valores das variáveis quando isso ocorre?
+1.6 O que ocorre quando a cidade rebe recursos de várias fontes diferentes?
+
+## Elemento
+1.1 Testar um caso esperado.
+1.2 As posições devem ser um número inteiro. O que ocorre caso a posição
+	inicial do elemento ńão seja um número inteiro?
+1.3 O que ocorre caso a posição final do elemento não seja um número inteiro?
+
+## Gerador
+1.1. O que ocorre quando um gerador possui uma conexão que tem uma capacidade menor que a sua produção?
+1.2. O que ocorre quando um gerador possui uma conexão que tem uma capacidade maior que a sua produção?
+1.3. Um gerador pode não possuir nada conectado a ele? Quais são os valores das variáveis quando isso ocorre?
+
+## Interconexão
+1.1. O que ocorre quando a interconexão possui somente algo conectado à entrada?
+1.2. O que ocorre quando a interconexão possui somente algo conectado à saída? 
+Uma gerador pode não possuir nada conectado a ele? Quais são os valores das variáveis quando isso ocorre?
+1.3. Se uma interconexão não possui nada conectado à sua saída ela para de puxar carga?
+
+## Relatório
+Acho que não precisa de testes.
+
+## Repositório
+Mantém as estruturas com os elementos e os lê do arquivo de configuração.
+1.1. O que ocorre quando tenta-se adicionar mais de um elemento na mesma posição?
+1.2. O que ocorre caso falte algum campo do adaptador?
+1.3. O que ocorre caso falte algum campo da cidade?
+1.4. O que ocorre caso falte algum campo do gerador?
+1.5. O que ocorre caso falte algum campo da interconexão?
+1.6. O que ocorre caso um campo do adptador possua um valor inválido?
+1.7. O que ocorre caso um campo da cidade possua um valor inválido?
+1.8 O que ocorre caso um campo do gerador possua um valor inválido?
+1.9 O que ocorre caso um campo da interconexão possua um valor inválido?

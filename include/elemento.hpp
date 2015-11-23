@@ -8,14 +8,31 @@
 using namespace std;
 
 class Elemento
-{
+{	
 	public:
 		typedef struct Posicao
 		{
 			int x;
 			int y;
 		}Posicao;
+
+	// Variáveis de instância.	
+	private:
+		string nome;
+		Posicao posicaoInicial;
+		Posicao posicaoFinal;
+		int carga;
+		set<Elemento*> entradas;
+		set<Elemento*> saidas;
+
+	public:
+		// Destructor.	
+		~Elemento() {};
 		
+		// Constructor.
+		Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal) ;
+
+		// Gets e sets.	
 		string getNome();
 		Posicao getPosicaoInicial();
 		Posicao getPosicaoFinal();
@@ -24,31 +41,14 @@ class Elemento
 		int getCarga();
 		void setCarga(int carga);
 		
-	private:
-		string nome;
-		Posicao posicaoInicial;
-		Posicao posicaoFinal;
-		int carga;
-		set<Elemento*> entradas;
-		set<Elemento*> saidas;
-				
-	public:		
-		~Elemento() {};
-		
-		Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal)
-		{
-			this->nome = nome;
-			this->posicaoInicial = posicaoInicial;
-			this->posicaoFinal = posicaoFinal;
-		};
-		
+		// Métodos.
 		virtual void receberCarga(int carga) {} ; 
-		virtual void emitirCarga() {} ;
+
+		virtual void emitirCarga() = 0 ;
 		
-		virtual void transmitirCarga(int carga)
-		{
-			cout << "\t- " << this->getNome() << " transmitiu " << carga << " de carga." << endl;
-		};
+		// No maioria dos casos esse método transmite a carga, ou seja, recebe e reenvia.
+		// Porém, no caso da cidade esse método somente recebe a carga.
+		virtual void transmitirCarga(int carga) ;
 				
 		virtual void draw() {} ;
 };

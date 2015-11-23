@@ -9,31 +9,23 @@ class Cidade : public Elemento
 		int recursoNecessario;
 		
 	public:
-		int getRecursoNecessario();
-		void consumirCarga();
-		
 		Cidade(string nome, Elemento::Posicao posicaoInicial, Elemento::Posicao posicaoFinal, int recursoNecessario) : 
 				Elemento(nome, posicaoInicial, posicaoFinal)
 		{
 			this->recursoNecessario = recursoNecessario;
 		};
-		
-		void transmitirCarga(int carga) 
-		{
-			this->receberCarga(carga);
-		 	return; 
-	 	}
-		
-		void receberCarga(int carga) 
-		{ 
-			if(this->getCarga() + carga > this->recursoNecessario)
-				this->setCarga(this->recursoNecessario);
-			else
-				this->setCarga(this->getCarga() + carga); 
-				
-			cout << "- " << this->getNome() << " recebeu +" << carga << " de carga (Total: " << this->getCarga() << ")" << endl;
-		} ; 
 
+		int getRecursoNecessario();
+
+		void consumirCarga();
+		
+		// Esse método é equivalente ao receber somente no caso da cidade. Isso se deve a interconexão
+		// sempre chamar o método transmitir carga (do método que vai receber a carga) para emitir a carga.
+		void transmitirCarga(int carga) ;
+		
+		void receberCarga(int carga) ;
+		
+		// A cidade não emite carga.
 		void emitirCarga() { return; } ;
 };
 

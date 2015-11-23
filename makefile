@@ -6,7 +6,6 @@ OBJS = projetoFinal.o adaptador.o cidade.o elemento.o gerador.o interconexao.o r
 ########################## Geracao dos executaveis ##########################
 projetoFinal: $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -o projetoFinal $(OBJS) -lgtest
-	make clean
 
 ########################## Geracao dos .o ##########################
 projetoFinal.o: projetoFinal.cpp projetoFinal_testes.hpp projetoFinal.hpp
@@ -35,9 +34,6 @@ repositorio.o: repositorio/repositorio.cpp include/repositorio.hpp
 
 ########################## Clean ##########################
 clean:
-	rm projetoFinal.o
-	rm adaptador.o
-	rm cidade.o
-	rm elemento.o
-	rm gerador.o
-	rm interconexao.o
+	rm *.o
+	rm *.gcno
+	rm *.gcda
