@@ -26,3 +26,16 @@
 *.exe
 *.out
 *.app
+projetoFinal
+
+# Gcov
+*.gcno
+*.gcda
+
+# Arquivos gerados pelo programa
+relatorio.txt
+logErros.txt
+logTestes.txt
+
+# Arquivos gerados pelo CMake
+CMakeCache.txt
