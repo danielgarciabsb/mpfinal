@@ -21,7 +21,7 @@ class Gerador : public Elemento
 
 		int getCustoGerador() ;
 
-		void emitirCarga() ;
+		void emitirCarga(int carga) ;
 };
 
 #endif // _GERADOR_H

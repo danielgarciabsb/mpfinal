@@ -4,10 +4,10 @@ void Adaptador::transmitirCarga(int carga)
 {
 	this->receberCarga(carga);
 	Elemento::transmitirCarga(this->getCarga());
-	this->emitirCarga();
+	this->emitirCarga(this->getCarga());
 } 
 
-void Adaptador::emitirCarga() 
+void Adaptador::emitirCarga(int carga) 
 { 
 	set<Elemento*> * saidas = this->getSaidas();
 	int totalCargaSaidas = 0;
@@ -26,7 +26,7 @@ void Adaptador::emitirCarga()
 	{
 		proporcao = (float) ((Interconexao*)(*iSaidas))->getCapacidadeMax() / totalCargaSaidas;
 
-		(*iSaidas)->transmitirCarga((int) (proporcao * this->getCarga()));
+		(*iSaidas)->transmitirCarga((int) (proporcao * carga));
 	}
 } 
 

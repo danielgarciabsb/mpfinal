@@ -44,7 +44,7 @@ class Elemento
 		// Métodos.
 		virtual void receberCarga(int carga) {} ; 
 
-		virtual void emitirCarga() = 0 ;
+		virtual void emitirCarga(int carga) = 0 ;
 		
 		// No maioria dos casos esse método transmite a carga, ou seja, recebe e reenvia.
 		// Porém, no caso da cidade esse método somente recebe a carga.

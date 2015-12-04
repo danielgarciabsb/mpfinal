@@ -45,35 +45,40 @@ bool Interconexao::isWorking() { return this->working; }
 
 void Interconexao::transmitirCarga(int carga)
 {
+	if(!this->isWorking())
+		return;
+		
+	int cargaJaTransmitida = this->getCarga();
+	
+	// Mostrar carga que passou pela interconexao na transmissao atual
+	if(carga + cargaJaTransmitida > this->capacidadeMax)
+		Elemento::transmitirCarga(this->capacidadeMax - cargaJaTransmitida);
+	else
+		Elemento::transmitirCarga(carga);
+		
+	// Receber e emitir carga
 	this->receberCarga(carga);
-	Elemento::transmitirCarga(this->getCarga());
-	this->emitirCarga();
+	this->emitirCarga(this->getCarga() - cargaJaTransmitida);
 }
 
-void Interconexao::emitirCarga()
-{
+void Interconexao::emitirCarga(int carga)
+{		
 	set<Elemento*> * saidas = this->getSaidas();
 	
 	set<Elemento*>::iterator iSaidas;
 	for(iSaidas = saidas->begin(); iSaidas != saidas->end(); iSaidas++)
-		(*iSaidas)->transmitirCarga(this->getCarga());
+		(*iSaidas)->transmitirCarga(carga);
 	
 } ;
 
 void Interconexao::receberCarga(int carga) 
-{ 	// Caso a interconexão NÃO esteja funcionando.	
-	if(!this->isWorking())
-	{
-		this->setCarga(0);
-		return;
-	}
-	
-	// Caso a interconeão esteja funcionando e receba uma carga maior que sua capacidade.
-	if(carga > this->capacidadeMax)
+{ 	
+	// Caso a interconeão receba uma carga maior que sua capacidade.
+	if(carga + this->getCarga() > this->capacidadeMax)
 		this->setCarga(this->capacidadeMax);
-	// Caso a interconeão esteja funcionando e receba uma carga menor que sua capacidade.
+	// Caso a interconeão receba uma carga menor que sua capacidade.
 	else				
-		this->setCarga(carga); 
+		this->setCarga(carga + this->getCarga());
 	
-	Elemento::receberCarga(this->getCarga());
+	
 } ;
