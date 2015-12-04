@@ -5,7 +5,7 @@ OBJS = projetoFinal.o adaptador.o cidade.o elemento.o gerador.o interconexao.o r
 
 ########################## Geracao dos executaveis ##########################
 projetoFinal: $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o projetoFinal $(OBJS) -lgtest
+	$(CC) $(CFLAGS) $(INCLUDES) -o projetoFinal $(OBJS) -lgtest -lSDL2 -lSDL2_gfx
 
 ########################## Geracao dos .o ##########################
 projetoFinal.o: projetoFinal.cpp projetoFinal_testes.hpp projetoFinal.hpp

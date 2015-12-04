@@ -34,3 +34,7 @@ void Adaptador::receberCarga(int carga)
 { 
 	this->setCarga(carga); 
 } 
+
+void Adaptador::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
+	filledCircleColor(gRenderer, log(1 + this->getPosicaoInicial().x - min_x_y) * spacing + 30, log(1 + this->getPosicaoInicial().y - min_x_y) * spacing + 30, 30, 0XFF00FF00);
+}

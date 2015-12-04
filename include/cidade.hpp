@@ -27,6 +27,8 @@ class Cidade : public Elemento
 		
 		// A cidade não emite carga, por isso o método está definido como vazio.
 		void emitirCarga() { return; } ;
+
+		void draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) ;
 };
 
 #endif // _CIDADE_H

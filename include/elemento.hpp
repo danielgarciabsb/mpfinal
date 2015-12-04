@@ -4,6 +4,10 @@
 #include <iostream>
 #include <string>
 #include <set>
+#include <stdio.h>
+#include <assert.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL2_gfxPrimitives.h>
 
 using namespace std;
 

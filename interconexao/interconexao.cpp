@@ -77,3 +77,11 @@ void Interconexao::receberCarga(int carga)
 	
 	Elemento::receberCarga(this->getCarga());
 } ;
+
+void Interconexao::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
+	uint32_t color = 0xFF00FF00;
+	if (this->isWorking() == false)
+		color = 0xFF0000FF;
+	lineColor(gRenderer, log(1 + this->getPosicaoInicial().x - min_x_y) * spacing + 30, log(1 + this->getPosicaoInicial().y - min_x_y) * spacing + 30,
+			  log(1 + this->getPosicaoFinal().x - min_x_y) * spacing + 30, log(1 + this->getPosicaoFinal().y - min_x_y) * spacing + 30, color);
+}

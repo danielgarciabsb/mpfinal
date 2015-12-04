@@ -47,6 +47,8 @@ class Interconexao: public Elemento
 		void emitirCarga() ;
 
 		void receberCarga(int carga) ;
+
+		void draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) ;
 };
 
 #endif // _INTERCONEXAO_H

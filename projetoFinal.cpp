@@ -1,10 +1,80 @@
-#include "projetoFinal_testes.hpp"
-#include "projetoFinal.hpp"
 #include <ctime>
 #include <cstdlib>
+//#include <SDL/SDL.h>
+#include "projetoFinal_testes.hpp"
+#include "projetoFinal.hpp"
+#include "elemento.hpp"
+
+//Tamanho dos elementos
+const int TAMANHO_ELEMENTOS = 60;
+
+//Screen dimension constants
+const int SCREEN_WIDTH = 660;
+const int SCREEN_HEIGHT = 660;
+
+//Main loop flag
+bool quit = false;
+
+//Event handler
+SDL_Event e;
+
+//Initialization flag
+bool success = true;
+
+//The window we'll be rendering to
+SDL_Window* window = NULL;
+
+//The surface contained by the window
+SDL_Surface* screenSurface = NULL;
+
+//The window renderer
+SDL_Renderer* gRenderer = NULL;
+
+//Current displayed texture
+SDL_Texture* gTexture = NULL;
 
 int main(int argc, char **argv)
 {
+
+	///////// Inicialização do SDL /////////
+    //Initialize SDL
+    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    {
+        printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
+    }
+    else
+    {
+        //Create window
+        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        if( window == NULL )
+        {
+            printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
+        }
+        else
+        {
+            //Get window surface
+            screenSurface = SDL_GetWindowSurface( window );
+
+            // //Fill the surface white
+            // SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+            
+            // //Update the surface
+            // SDL_UpdateWindowSurface( window );
+
+            // Create renderer for window
+            gRenderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+            if( gRenderer == NULL )
+            {
+                printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
+                success = false;
+            }
+
+           	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+            SDL_RenderClear( gRenderer );
+			SDL_RenderPresent( gRenderer );
+        }
+    }
+
 	#if _TEST_MODE == 1
 	
 	
@@ -266,8 +336,6 @@ int main(int argc, char **argv)
 				Relatorio::tempoCidadesAbaixo30++;
 				//temAbaixo30 = true;
 			}
-			
-			(*iCidades)->consumirCarga();
 		}
 		
 		//if(temMenosRecurso)
@@ -277,9 +345,116 @@ int main(int argc, char **argv)
 	
 		// Mostrar relatorio parcial
 		Relatorio::mostrarRelatorio();
+
+		///////// Desenhando na tela /////////
+
+		//Handle events on queue
+		//Essa rotina é necessária para manter a janela SDL atualizada. Se ela não for
+		//utilizada a janela hiberna e fica cinza.
+		while( SDL_PollEvent( &e ) != 0 )
+		{
+			//User requests quit
+			if( e.type == SDL_QUIT )
+			{
+				quit = true;
+			}
+		}
+
+		// Definindo espaçamento
+		int max_x_y = 0;
+		int min_x_y = (*elementos.begin())->getPosicaoInicial().x;
+		int spacing = 0;
+
+		for(iElementos = elementos.begin(); iElementos != elementos.end(); iElementos++) {
+			// Calculando max_x_y
+			if ((*iElementos)->getPosicaoInicial().x > max_x_y)
+				max_x_y = (*iElementos)->getPosicaoInicial().x;
+			if ((*iElementos)->getPosicaoFinal().x > max_x_y)
+				max_x_y = (*iElementos)->getPosicaoFinal().x;
+			if ((*iElementos)->getPosicaoInicial().y > max_x_y)
+				max_x_y = (*iElementos)->getPosicaoInicial().y;
+			if ((*iElementos)->getPosicaoFinal().y > max_x_y)
+				max_x_y = (*iElementos)->getPosicaoFinal().y;
+
+			// Calculando min_x_y
+			if ((*iElementos)->getPosicaoInicial().x < min_x_y)
+				min_x_y = (*iElementos)->getPosicaoInicial().x;
+			if ((*iElementos)->getPosicaoFinal().x < min_x_y)
+				min_x_y = (*iElementos)->getPosicaoFinal().x;
+			if ((*iElementos)->getPosicaoInicial().y < min_x_y)
+				min_x_y = (*iElementos)->getPosicaoInicial().y;
+			if ((*iElementos)->getPosicaoFinal().y < min_x_y)
+				min_x_y = (*iElementos)->getPosicaoFinal().y;
+		}
+		// Define a quantidade de pixels entre cada elemento que será desenhado.
+		spacing = (SCREEN_HEIGHT - TAMANHO_ELEMENTOS) / log(1 + max_x_y - min_x_y);
+		cout << spacing;
+
+		// //Clear screen
+		// SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
+		// SDL_RenderClear( gRenderer );
+
+		// Desenhando cidades (quadrados)
+		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++) {
+			(*iCidades)->draw( gRenderer, spacing, min_x_y );
+			//Update screen
+			SDL_RenderPresent( gRenderer );
+		}
+
+		// Desenhando adaptadores (círculos)
+		for(iAdaptadores = adaptadores.begin(); iAdaptadores != adaptadores.end(); iAdaptadores++) {
+			(*iAdaptadores)->draw( gRenderer, spacing, min_x_y );
+			//Update screen
+			SDL_RenderPresent( gRenderer );
+		}
+
+		// Desenhando geradores (triângulos)
+		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++) {
+			(*iGeradores)->draw( gRenderer, spacing, min_x_y );
+			//Update screen
+			SDL_RenderPresent( gRenderer );
+		}
+
+		// Desenhando interconexoes (linhas)
+		for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++) {
+			(*iInterconexoes)->draw( gRenderer, spacing, min_x_y );
+			//Update screen
+			SDL_RenderPresent( gRenderer );
+		}
+
+		// Consumindo a carga recebida pelas cidades.
+		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++) {
+			(*iCidades)->consumirCarga();
+		}
 		
 		// Esperar 1 segundo
 		clock_t start = clock();
 		while((clock() - start) / CLOCKS_PER_SEC < 1);
 	}
+
+	//Rotina chamada para manter a janela aberta.
+	//O programa só acaba quando o usuário fecha a janela.
+	while(!quit) {
+		//Handle events on queue
+		while( SDL_PollEvent( &e ) != 0 )
+		{
+			//User requests quit
+			if( e.type == SDL_QUIT )
+			{
+				quit = true;
+			}
+		}
+	}
+
+	///////// Finalização do programa /////////
+	//Destroy window
+    SDL_DestroyRenderer( gRenderer );
+    SDL_DestroyWindow( window );
+    window = NULL;
+    gRenderer = NULL;
+
+    //Quit SDL subsystems
+    SDL_Quit();
+
+    return 0;
 }
