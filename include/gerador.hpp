@@ -21,7 +21,7 @@ class Gerador : public Elemento
 
 		int getCustoGerador() ;
 
-		void emitirCarga() ;
+		void emitirCarga(int carga) ;
 
 		void draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) ;
 };

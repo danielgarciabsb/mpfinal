@@ -290,20 +290,53 @@ int main(int argc, char **argv)
 
 	cout << "Digite o tempo de simulação:\n";
 	cin >> tempoSimulacao;
+
+	// Variáveis utilizadas para desenhar os elementos.
+	// Definindo espaçamento
+	int max_x_y = 0;
+	int min_x_y = (*elementos.begin())->getPosicaoInicial().x;
+	int spacing = 0;
+
+	for(iElementos = elementos.begin(); iElementos != elementos.end(); iElementos++) {
+		// Calculando max_x_y
+		if ((*iElementos)->getPosicaoInicial().x > max_x_y)
+			max_x_y = (*iElementos)->getPosicaoInicial().x;
+		if ((*iElementos)->getPosicaoFinal().x > max_x_y)
+			max_x_y = (*iElementos)->getPosicaoFinal().x;
+		if ((*iElementos)->getPosicaoInicial().y > max_x_y)
+			max_x_y = (*iElementos)->getPosicaoInicial().y;
+		if ((*iElementos)->getPosicaoFinal().y > max_x_y)
+			max_x_y = (*iElementos)->getPosicaoFinal().y;
+
+		// Calculando min_x_y
+		if ((*iElementos)->getPosicaoInicial().x < min_x_y)
+			min_x_y = (*iElementos)->getPosicaoInicial().x;
+		if ((*iElementos)->getPosicaoFinal().x < min_x_y)
+			min_x_y = (*iElementos)->getPosicaoFinal().x;
+		if ((*iElementos)->getPosicaoInicial().y < min_x_y)
+			min_x_y = (*iElementos)->getPosicaoInicial().y;
+		if ((*iElementos)->getPosicaoFinal().y < min_x_y)
+			min_x_y = (*iElementos)->getPosicaoFinal().y;
+	}
+	// Define a quantidade de pixels entre cada elemento que será desenhado.
+	spacing = (SCREEN_HEIGHT - TAMANHO_ELEMENTOS) / log(1 + max_x_y - min_x_y);
 	
-	for(i = 0; i < tempoSimulacao; i++)
+	for(i = 0; i < tempoSimulacao && !quit; i++)
 	{
 		cout << "\n\t===== Segundo atual: " << i + 1 << "=====" << endl;
 		// Calcular chance de falha das interconexoes (Feita apenas uma vez, com objetivo de verificar funcionamento)
 		// Esse processo sera feito para cada segundo da simulacao
 		for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++)
+		{
 			(*iInterconexoes)->aplicarChanceDeFalha();
+			(*iInterconexoes)->setCarga(0); // zerar carga 
+		}
 	
 		// Mostrar caminho percorrido pelas cargas (as funcoes responsaveis por essa funcionalidade estao
 		// imprimindo mensagem na tela com objetivo de verificar funcionamento)
 		// TIRAR EMISSOES DE MENSAGENS NA TELA DOS METODOS NAS CLASSES
 		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++)
-			(*iGeradores)->emitirCarga();
+			(*iGeradores)->emitirCarga((*iGeradores)->getRecursoProduzido());
 		
 		// Atualizar Relatorio
 		Relatorio::tempoTotal++;
@@ -315,9 +348,6 @@ int main(int argc, char **argv)
 		}
 		
 		//	Atualizar carga total consumida, numero de cidades sem recurso e tempo sem recurso
-		
-		//bool temMenosRecurso = false;
-		//bool temAbaixo30 = false;
 			
 		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++)
 		{
@@ -328,20 +358,15 @@ int main(int argc, char **argv)
 			{
 				Relatorio::cidadesMenosRecurso.insert(*iCidades);
 				Relatorio::tempoCidadesSemRecurso++;
-				//temMenosRecurso = true;
 			}
 			if((*iCidades)->getCarga() < 0.3 * (float) (*iCidades)->getRecursoNecessario())
 			{
 				Relatorio::cidadesAbaixo30.insert(*iCidades);
 				Relatorio::tempoCidadesAbaixo30++;
-				//temAbaixo30 = true;
 			}
 		}
 		
-		//if(temMenosRecurso)
-			//Relatorio::tempoCidadesSemRecurso++;
-		//if(temAbaixo30)
-			//Relatorio::tempoCidadesAbaixo30++;
+		
 	
 		// Mostrar relatorio parcial
 		Relatorio::mostrarRelatorio();
@@ -359,36 +384,6 @@ int main(int argc, char **argv)
 				quit = true;
 			}
 		}
-
-		// Definindo espaçamento
-		int max_x_y = 0;
-		int min_x_y = (*elementos.begin())->getPosicaoInicial().x;
-		int spacing = 0;
-
-		for(iElementos = elementos.begin(); iElementos != elementos.end(); iElementos++) {
-			// Calculando max_x_y
-			if ((*iElementos)->getPosicaoInicial().x > max_x_y)
-				max_x_y = (*iElementos)->getPosicaoInicial().x;
-			if ((*iElementos)->getPosicaoFinal().x > max_x_y)
-				max_x_y = (*iElementos)->getPosicaoFinal().x;
-			if ((*iElementos)->getPosicaoInicial().y > max_x_y)
-				max_x_y = (*iElementos)->getPosicaoInicial().y;
-			if ((*iElementos)->getPosicaoFinal().y > max_x_y)
-				max_x_y = (*iElementos)->getPosicaoFinal().y;
-
-			// Calculando min_x_y
-			if ((*iElementos)->getPosicaoInicial().x < min_x_y)
-				min_x_y = (*iElementos)->getPosicaoInicial().x;
-			if ((*iElementos)->getPosicaoFinal().x < min_x_y)
-				min_x_y = (*iElementos)->getPosicaoFinal().x;
-			if ((*iElementos)->getPosicaoInicial().y < min_x_y)
-				min_x_y = (*iElementos)->getPosicaoInicial().y;
-			if ((*iElementos)->getPosicaoFinal().y < min_x_y)
-				min_x_y = (*iElementos)->getPosicaoFinal().y;
-		}
-		// Define a quantidade de pixels entre cada elemento que será desenhado.
-		spacing = (SCREEN_HEIGHT - TAMANHO_ELEMENTOS) / log(1 + max_x_y - min_x_y);
-		cout << spacing;
 
 		// //Clear screen
 		// SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );

@@ -13,7 +13,7 @@ class Adaptador : public Elemento
 		
 		// A carga emitida para cada interconexão é dada pela fórmula:
 		// (carga * max_interJ) / (max_inter1 + max_inter2 + ..... + max_interN)
-		void emitirCarga() ;
+		void emitirCarga(int carga) ;
 
 		void receberCarga(int carga) ;
 

@@ -45,43 +45,57 @@ bool Interconexao::isWorking() { return this->working; }
 
 void Interconexao::transmitirCarga(int carga)
 {
+	if(!this->isWorking())
+		return;
+		
+	int cargaJaTransmitida = this->getCarga();
+	
+	// Mostrar carga que passou pela interconexao na transmissao atual
+	if(carga + cargaJaTransmitida > this->capacidadeMax)
+		Elemento::transmitirCarga(this->capacidadeMax - cargaJaTransmitida);
+	else
+		Elemento::transmitirCarga(carga);
+		
+	// Receber e emitir carga
 	this->receberCarga(carga);
-	Elemento::transmitirCarga(this->getCarga());
-	this->emitirCarga();
+	this->emitirCarga(this->getCarga() - cargaJaTransmitida);
 }
 
-void Interconexao::emitirCarga()
-{
+void Interconexao::emitirCarga(int carga)
+{		
 	set<Elemento*> * saidas = this->getSaidas();
 	
 	set<Elemento*>::iterator iSaidas;
 	for(iSaidas = saidas->begin(); iSaidas != saidas->end(); iSaidas++)
-		(*iSaidas)->transmitirCarga(this->getCarga());
+		(*iSaidas)->transmitirCarga(carga);
 	
 } ;
 
 void Interconexao::receberCarga(int carga) 
-{ 	// Caso a interconexão NÃO esteja funcionando.	
-	if(!this->isWorking())
-	{
-		this->setCarga(0);
-		return;
-	}
-	
-	// Caso a interconeão esteja funcionando e receba uma carga maior que sua capacidade.
-	if(carga > this->capacidadeMax)
+{ 	
+	// Caso a interconeão receba uma carga maior que sua capacidade.
+	if(carga + this->getCarga() > this->capacidadeMax)
 		this->setCarga(this->capacidadeMax);
-	// Caso a interconeão esteja funcionando e receba uma carga menor que sua capacidade.
+	// Caso a interconeão receba uma carga menor que sua capacidade.
 	else				
-		this->setCarga(carga); 
+		this->setCarga(carga + this->getCarga());
 	
-	Elemento::receberCarga(this->getCarga());
+	
 } ;
 
 void Interconexao::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
+	// Posição do canto superior esquerdo do quadrado.
+	// Os elementos são impressos em escala logarítmica. Por isso esses "logs".
+	// Se quiser deslocar a posição a ser impressa é só somar ou diminuir a quantidade
+	// de pixels de pos_x ou pos_y.
+	int	pos_ini_x = log(1 + this->getPosicaoInicial().x - min_x_y) * spacing + 30;
+	int pos_ini_y = log(1 + this->getPosicaoInicial().y - min_x_y) * spacing + 30;
+	int pos_fi_x = log(1 + this->getPosicaoFinal().x - min_x_y) * spacing + 30;
+	int pos_fi_y = log(1 + this->getPosicaoFinal().y - min_x_y) * spacing + 30;
+
 	uint32_t color = 0xFF00FF00;
+	
 	if (this->isWorking() == false)
 		color = 0xFF0000FF;
-	lineColor(gRenderer, log(1 + this->getPosicaoInicial().x - min_x_y) * spacing + 30, log(1 + this->getPosicaoInicial().y - min_x_y) * spacing + 30,
-			  log(1 + this->getPosicaoFinal().x - min_x_y) * spacing + 30, log(1 + this->getPosicaoFinal().y - min_x_y) * spacing + 30, color);
+	lineColor(gRenderer, pos_ini_x, pos_ini_y, pos_fi_x, pos_fi_y, color);
 }

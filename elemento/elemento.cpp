@@ -23,5 +23,5 @@ Elemento::Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal)
 
 void Elemento::transmitirCarga(int carga)
 {
-	cout << "\t- " << this->getNome() << " transmitiu " << carga << " de carga." << endl;
+	cout << "\t- " << this->getNome() << " transmitiu +" << carga << " de carga." << endl;
 }

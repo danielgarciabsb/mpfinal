@@ -44,7 +44,7 @@ class Interconexao: public Elemento
 		
 		void transmitirCarga(int carga) ;
 
-		void emitirCarga() ;
+		void emitirCarga(int carga) ;
 
 		void receberCarga(int carga) ;
 
