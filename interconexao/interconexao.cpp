@@ -83,7 +83,14 @@ void Interconexao::receberCarga(int carga)
 	
 } ;
 
-void Interconexao::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
+void Interconexao::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) {
+	assert(spacing < 600);
+	const char* string = NULL;
+	SDL_Color preto = {00, 00, 00, 0xFF};
+
+	// Superfície com o texto.
+	SDL_Surface *text_sf = NULL;
+
 	// Posição do canto superior esquerdo do quadrado.
 	// Os elementos são impressos em escala logarítmica. Por isso esses "logs".
 	// Se quiser deslocar a posição a ser impressa é só somar ou diminuir a quantidade
@@ -98,4 +105,36 @@ void Interconexao::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
 	if (this->isWorking() == false)
 		color = 0xFF0000FF;
 	lineColor(gRenderer, pos_ini_x, pos_ini_y, pos_fi_x, pos_fi_y, color);
+
+	// //// Imprimindo texto.
+	// // Criando a superfície com o texto.
+	// string = ("Cap.:" + std::to_string(this->capacidadeMax)).c_str();
+	// text_sf = TTF_RenderText_Solid(font, string, preto);
+
+	// //Setup the location on the screen to blit to
+	// SDL_Rect rect = {  (pos_ini_x + pos_fi_x) / 2 - 26, (pos_ini_y + pos_fi_y) / 2 - 26, 0, 0};
+
+	// //Blit text_surface surface to the screen surface
+	// SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+
+	// //Free the text surface
+	// SDL_FreeSurface(text_sf);
+
+	// string = ("CF:" + std::to_string((int)(this->chanceFalha * 100)) + "%").c_str();
+	// text_sf = TTF_RenderText_Solid(font, string, preto);
+	// rect = {  (pos_ini_x + pos_fi_x) / 2 - 26, (pos_ini_y + pos_fi_y) / 2 - 26 + 13, 0, 0};
+	// SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+	// SDL_FreeSurface(text_sf);
+
+	// string = ("TC:" + std::to_string(this->tempoConserto)).c_str();
+	// text_sf = TTF_RenderText_Solid(font, string, preto);
+	// rect = {  (pos_ini_x + pos_fi_x) / 2 - 26, (pos_ini_y + pos_fi_y) / 2 - 26 + 26, 0, 0};
+	// SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+	// SDL_FreeSurface(text_sf);
+
+	// string = ("CC:" + std::to_string(this->custoConserto)).c_str();
+	// text_sf = TTF_RenderText_Solid(font, string, preto);
+	// rect = {  (pos_ini_x + pos_fi_x) / 2 - 26, (pos_ini_y + pos_fi_y) / 2 - 26 + 39, 0, 0};
+	// SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+	// SDL_FreeSurface(text_sf);
 }

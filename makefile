@@ -1,11 +1,11 @@
 CC = g++
-CFLAGS = -g -ftest-coverage -fprofile-arcs -pthread
+CFLAGS = -std=c++11 -g -ftest-coverage -fprofile-arcs -pthread
 INCLUDES = -iquote./include
 OBJS = projetoFinal.o adaptador.o cidade.o elemento.o gerador.o interconexao.o relatorio.o repositorio.o
 
 ########################## Geracao dos executaveis ##########################
 projetoFinal: $(OBJS)
-	$(CC) $(CFLAGS) $(INCLUDES) -o projetoFinal $(OBJS) -lgtest -lSDL2 -lSDL2_gfx
+	$(CC) $(CFLAGS) $(INCLUDES) -o projetoFinal $(OBJS) -lgtest -lSDL2 -lSDL2_gfx -lSDL2_ttf
 
 ########################## Geracao dos .o ##########################
 projetoFinal.o: projetoFinal.cpp projetoFinal_testes.hpp projetoFinal.hpp

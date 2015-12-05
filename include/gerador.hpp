@@ -23,7 +23,7 @@ class Gerador : public Elemento
 
 		void emitirCarga(int carga) ;
 
-		void draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) ;
+		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen, TTF_Font* font, int spacing, int min_x_y) ;
 };
 
 #endif // _GERADOR_H

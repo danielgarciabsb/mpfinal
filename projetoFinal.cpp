@@ -6,11 +6,11 @@
 #include "elemento.hpp"
 
 //Tamanho dos elementos
-const int TAMANHO_ELEMENTOS = 60;
+const int TAMANHO_ELEMENTOS = 70;
 
 //Screen dimension constants
-const int SCREEN_WIDTH = 660;
-const int SCREEN_HEIGHT = 660;
+const int SCREEN_WIDTH = 700;
+const int SCREEN_HEIGHT = 700;
 
 //Main loop flag
 bool quit = false;
@@ -25,7 +25,7 @@ bool success = true;
 SDL_Window* window = NULL;
 
 //The surface contained by the window
-SDL_Surface* screenSurface = NULL;
+SDL_Surface* screen_sf = NULL;
 
 //The window renderer
 SDL_Renderer* gRenderer = NULL;
@@ -38,31 +38,22 @@ int main(int argc, char **argv)
 
 	///////// Inicialização do SDL /////////
     //Initialize SDL
-    if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
+    if( SDL_Init( SDL_INIT_EVERYTHING ) < 0 )
     {
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
     }
     else
     {
         //Create window
-        window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        window = SDL_CreateWindow( "Simulação", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
         if( window == NULL )
         {
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
         }
         else
         {
-            //Get window surface
-            screenSurface = SDL_GetWindowSurface( window );
-
-            // //Fill the surface white
-            // SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-            
-            // //Update the surface
-            // SDL_UpdateWindowSurface( window );
-
             // Create renderer for window
-            gRenderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+            gRenderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_SOFTWARE );
             if( gRenderer == NULL )
             {
                 printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -72,11 +63,30 @@ int main(int argc, char **argv)
            	SDL_SetRenderDrawColor( gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
             SDL_RenderClear( gRenderer );
 			SDL_RenderPresent( gRenderer );
+
+			//Get window surface
+            screen_sf = SDL_GetWindowSurface( window );
+
+            // //Fill the surface white
+            // SDL_FillRect( screenSurface, NULL, SDL_MapRGB( screenSurface->format, 0xFF, 0xFF, 0xFF ) );
+            
+            // //Update the surface
+            // SDL_UpdateWindowSurface( window );
         }
     }
 
-	#if _TEST_MODE == 1
-	
+    // Inicialização da biblioteca utilizada para imprimir caracteres na tela.
+	if (TTF_Init() == -1) 
+		printf("Unable to initialize SDL_ttf: %s \n", TTF_GetError());
+
+	// Definição da fonte a ser utilizada.
+	TTF_Font* font;
+    font = TTF_OpenFont("DroidSans.ttf", 12);
+    if (font == NULL){
+		printf("Unable to load font: %s \n", TTF_GetError());
+    }
+
+	#if _TEST_MODE == 1	
 	
 	testing::InitGoogleTest(&argc, argv);
 	
@@ -391,28 +401,30 @@ int main(int argc, char **argv)
 
 		// Desenhando cidades (quadrados)
 		for(iCidades = cidades.begin(); iCidades != cidades.end(); iCidades++) {
-			(*iCidades)->draw( gRenderer, spacing, min_x_y );
+			(*iCidades)->draw( gRenderer, screen_sf, font, spacing, min_x_y );
 			//Update screen
 			SDL_RenderPresent( gRenderer );
 		}
 
 		// Desenhando adaptadores (círculos)
 		for(iAdaptadores = adaptadores.begin(); iAdaptadores != adaptadores.end(); iAdaptadores++) {
-			(*iAdaptadores)->draw( gRenderer, spacing, min_x_y );
+			(*iAdaptadores)->draw( gRenderer, screen_sf, font, spacing, min_x_y );
 			//Update screen
 			SDL_RenderPresent( gRenderer );
 		}
 
 		// Desenhando geradores (triângulos)
 		for(iGeradores = geradores.begin(); iGeradores != geradores.end(); iGeradores++) {
-			(*iGeradores)->draw( gRenderer, spacing, min_x_y );
+			(*iGeradores)->draw( gRenderer, screen_sf, font, spacing, min_x_y );
 			//Update screen
 			SDL_RenderPresent( gRenderer );
+			//Update the surface
+            //SDL_UpdateWindowSurface( window );
 		}
 
 		// Desenhando interconexoes (linhas)
 		for(iInterconexoes = interconexoes.begin(); iInterconexoes != interconexoes.end(); iInterconexoes++) {
-			(*iInterconexoes)->draw( gRenderer, spacing, min_x_y );
+			(*iInterconexoes)->draw( gRenderer, screen_sf, font, spacing, min_x_y );
 			//Update screen
 			SDL_RenderPresent( gRenderer );
 		}

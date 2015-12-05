@@ -23,8 +23,14 @@ void Cidade::receberCarga(int carga)
 	cout << "- " << this->getNome() << " recebeu +" << carga << " de carga (Total: " << this->getCarga() << ")" << endl;
 }
 
-void Cidade::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
+void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) {
 	assert(spacing < 600);
+	const char* string = NULL;
+	SDL_Color preto = {00, 00, 00, 0xFF};
+
+	// Superfície com o texto.
+	SDL_Surface *text_sf = NULL;
+
 	// Váriaveis utilizadas para definir a cor impressa.
 	uint32_t r = 0x00, g = 0xFF, b = 0;
 
@@ -44,7 +50,36 @@ void Cidade::draw(SDL_Renderer* gRenderer, int spacing, int min_x_y) {
 	else if (this->getCarga() < 0.3 * (float) this->getRecursoNecessario()) {
 		r = 0xFF; g = 0; b = 0;
 	}
+
+	//// Imprimindo a figura geométrica.
 	SDL_Rect fillRect = { pos_x,  pos_y, 60, 60};
     SDL_SetRenderDrawColor( gRenderer, r, g, b, 0xFF );        
     SDL_RenderFillRect( gRenderer, &fillRect );
+
+	//// Imprimindo texto.
+	// Criando a superfície com o texto.
+	string = (this->getNome() + "(" + std::to_string(this->getPosicaoInicial().x) + "," + 
+	  		  std::to_string(this->getPosicaoInicial().y) + ")").c_str();
+	text_sf = TTF_RenderText_Solid(font, string, preto);
+
+	//Setup the location on the screen to blit to
+	SDL_Rect rect = { pos_x , pos_y , 0, 0};
+
+	//Blit text_surface surface to the screen surface
+	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+
+	//Free the text surface
+	SDL_FreeSurface(text_sf);
+
+	string = "Consumo:";
+	text_sf = TTF_RenderText_Solid(font, string, preto);
+	rect = { pos_x , pos_y + 13 , 0, 0};
+	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+	SDL_FreeSurface(text_sf);
+
+	string = std::to_string(this->recursoNecessario).c_str();
+	text_sf = TTF_RenderText_Solid(font, string, preto);
+	rect = { pos_x , pos_y + 26 , 0, 0};
+	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
+	SDL_FreeSurface(text_sf);
 }

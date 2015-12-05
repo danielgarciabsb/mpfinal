@@ -19,7 +19,8 @@ Elemento::Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal)
 	this->nome = nome;
 	this->posicaoInicial = posicaoInicial;
 	this->posicaoFinal = posicaoFinal;
-};
+	this->carga = 0;
+}
 
 void Elemento::transmitirCarga(int carga)
 {
