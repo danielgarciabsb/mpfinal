@@ -27,15 +27,17 @@ int main(int argc, char **argv)
 	c->inicializarAmbiente();
 	
 	// Metodo estatico para ler os elementos da rede e instanciar os objetos
-	leitura = c->lerElementos("rede_distribuicao.conf");
+	leitura = c->lerElementos("rede_distribuica.conf");
 	switch(leitura)
 	{
 		case Repositorio::ARQUIVO_INEXISTENTE:
 			cout << "\tArquivo nao existe" << endl;
+			c->finalizar();
 			exit(-1);
 		
 		case Repositorio::FORMATO_INVALIDO:
 			cout << "\tArquivo em formato invalido" << endl;
+			c->finalizar();
 			exit(-1);
 	}
 		
@@ -44,6 +46,7 @@ int main(int argc, char **argv)
 	c->calcularPropriedadesDiagrama();
 	c->rodarSimulacao(5);
 	c->finalizar();
-
+	delete c;
+	
     return 0;
 }
