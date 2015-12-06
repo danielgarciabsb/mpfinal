@@ -14,22 +14,26 @@ class Cidade : public Elemento
 		{
 			this->recursoNecessario = recursoNecessario;
 		};
+		
+		~Cidade(){};
 
 		int getRecursoNecessario();
 
 		void consumirCarga();
 		
+		// métodos da super classe
+		
+		void Delete();
+		
 		// Esse método é equivalente ao receber somente no caso da cidade. Isso se deve a interconexão
 		// sempre chamar o método transmitir carga (do método que vai receber a carga) para emitir a carga.
-		void transmitirCarga(int carga) ;
+		void transmitirCarga(int carga);
 		
-		void receberCarga(int carga) ;
+		void receberCarga(int carga);
 		
-		// A cidade não emite carga, por isso o método está definido como vazio.
-
-		void emitirCarga(int carga) { return; } ;
+		void emitirCarga(int carga);
 		
-		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) ;
+		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Elemento::Posicao spacing, Elemento::Posicao min_x_y) ;
 };
 
 #endif // _CIDADE_H

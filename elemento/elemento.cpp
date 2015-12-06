@@ -14,6 +14,20 @@ set<Elemento*> * Elemento::getEntradas() { return &this->entradas; }
 
 set<Elemento*> * Elemento::getSaidas() { return &this->saidas; }
 
+void Elemento::transmitirCarga(int carga)
+{
+	cout << "\t- " << this->getNome() << " transmitiu +" << carga << " de carga." << endl;
+}
+
+void Elemento::receberCarga(int carga){};
+
+void Elemento::emitirCarga(int carga){};
+
+void Elemento::Delete()
+{
+	this->~Elemento();
+}
+
 Elemento::Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal)
 {
 	this->nome = nome;
@@ -22,7 +36,3 @@ Elemento::Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal)
 	this->carga = 0;
 }
 
-void Elemento::transmitirCarga(int carga)
-{
-	cout << "\t- " << this->getNome() << " transmitiu +" << carga << " de carga." << endl;
-}

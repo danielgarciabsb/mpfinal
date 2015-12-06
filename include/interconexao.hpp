@@ -26,10 +26,8 @@ class Interconexao: public Elemento
 			this->previsaoTerminoConserto = 0;
 			this->working = true;
 		};
-
-		enum Validacao{
-			FALHA_TRANSPORTE, EXITO_TRANSPORTE
-		};
+		
+		~Interconexao() {};
 		
 		int getCapacidadeMax() ;
 		
@@ -43,13 +41,17 @@ class Interconexao: public Elemento
 
 		bool isWorking() ;
 		
-		void transmitirCarga(int carga) ;
-
+		// metodos da super classe
+		
+		void Delete();
+		
+		void transmitirCarga(int carga);
+		
 		void emitirCarga(int carga) ;
 
 		void receberCarga(int carga) ;
 
-		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) ;
+		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Elemento::Posicao spacing, Elemento::Posicao min_x_y) ;
 };
 
 #endif // _INTERCONEXAO_H

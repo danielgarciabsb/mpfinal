@@ -1,5 +1,10 @@
 #include "cidade.hpp"
 
+void Cidade::Delete()
+{
+	this->~Cidade();
+}
+
 int Cidade::getRecursoNecessario() { return this->recursoNecessario; }
 
 void Cidade::consumirCarga()
@@ -7,24 +12,27 @@ void Cidade::consumirCarga()
 	this->setCarga(0);
 }
 
-void Cidade::transmitirCarga(int carga) 
+void Cidade::transmitirCarga(int carga)
 {
 	this->receberCarga(carga);
  	return; 
 }
 
-void Cidade::receberCarga(int carga) 
+void Cidade::receberCarga(int carga)
 { 
 	//if(this->getCarga() + carga > this->recursoNecessario)
 		//this->setCarga(this->recursoNecessario);
 	//else
 		this->setCarga(this->getCarga() + carga); 
-		
-	cout << "- " << this->getNome() << " recebeu +" << carga << " de carga (Total: " << this->getCarga() << ")" << endl;
-}
 
-void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) {
-	assert(spacing < 600);
+	cout << "- " << this->getNome() << " recebeu +" << carga << " de carga (Total: " << this->getCarga() << ")" << endl;
+} 
+
+void Cidade::emitirCarga(int carga){}
+		
+void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Elemento::Posicao spacing, Posicao min_x_y)
+{
+	assert(spacing.x < 600 && spacing.y < 600);
 	const char* string = NULL;
 	SDL_Color preto = {00, 00, 00, 0xFF};
 
@@ -38,9 +46,9 @@ void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* fon
 	// Os elementos são impressos em escala logarítmica. Por isso esses "logs".
 	// Se quiser deslocar a posição a ser impressa é só somar ou diminuir a quantidade
 	// de pixels de pos_x ou pos_y.
-	int	pos_x = log(1 + this->getPosicaoInicial().x - min_x_y) * spacing;
-	int pos_y = log(1 + this->getPosicaoInicial().y - min_x_y) * spacing;
-	
+	int	pos_x = log(1 + this->getPosicaoInicial().x - min_x_y.x) * spacing.x;
+	int pos_y = log(1 + this->getPosicaoInicial().y - min_x_y.y) * spacing.y;
+
 	// Caso a carga recebida seja menor que a carga necessária, porém maior que 30%.
 	if (this->getCarga() < this->getRecursoNecessario() && this->getCarga() > 0.3 * (float) this->getRecursoNecessario()) {
 		// Amarelo, e não me pergunte porque tem vermelho.
@@ -53,17 +61,20 @@ void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* fon
 
 	//// Imprimindo a figura geométrica.
 	SDL_Rect fillRect = { pos_x,  pos_y, 60, 60};
-    SDL_SetRenderDrawColor( gRenderer, r, g, b, 0xFF );        
-    SDL_RenderFillRect( gRenderer, &fillRect );
+	SDL_SetRenderDrawColor( gRenderer, r, g, b, 0xFF );        
+	SDL_RenderFillRect( gRenderer, &fillRect );
 
 	//// Imprimindo texto.
 	// Criando a superfície com o texto.
-	string = (this->getNome() + "(" + std::to_string(this->getPosicaoInicial().x) + "," + 
-	  		  std::to_string(this->getPosicaoInicial().y) + ")").c_str();
-	text_sf = TTF_RenderText_Solid(font, string, preto);
+	string = (this->getNome() + "(" + to_string(this->getPosicaoInicial().x) + "," + 
+	  		  to_string(this->getPosicaoInicial().y) + ")" +
+	  		  "\nConsumo: " + to_string(this->recursoNecessario) +
+	  		  "\nCarga: " + to_string(this->getCarga())).c_str();
+	  		 
+	text_sf = TTF_RenderText_Blended_Wrapped(font, string, preto, 60);
 
 	//Setup the location on the screen to blit to
-	SDL_Rect rect = { pos_x , pos_y , 0, 0};
+	SDL_Rect rect = { pos_x , pos_y , 60, 60};
 
 	//Blit text_surface surface to the screen surface
 	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
@@ -71,15 +82,15 @@ void Cidade::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* fon
 	//Free the text surface
 	SDL_FreeSurface(text_sf);
 
-	string = "Consumo:";
-	text_sf = TTF_RenderText_Solid(font, string, preto);
+	/*string = ("Consumoblabla: " + to_string(this->recursoNecessario)).c_str();
+	text_sf = TTF_RenderText_Blended_Wrapped(font, string, preto, 60);
 	rect = { pos_x , pos_y + 13 , 0, 0};
 	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
 	SDL_FreeSurface(text_sf);
 
-	string = std::to_string(this->recursoNecessario).c_str();
+	/*string = std::to_string(this->recursoNecessario).c_str();
 	text_sf = TTF_RenderText_Solid(font, string, preto);
 	rect = { pos_x , pos_y + 26 , 0, 0};
 	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
-	SDL_FreeSurface(text_sf);
+	SDL_FreeSurface(text_sf);*/
 }

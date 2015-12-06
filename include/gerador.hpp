@@ -16,14 +16,24 @@ class Gerador : public Elemento
 			this->recursoProduzido = recursoProduzido;
 			this->custoGerador = custoGerador;
 		};
+		
+		~Gerador(){};
 
 		int getRecursoProduzido() ;
 
 		int getCustoGerador() ;
 
-		void emitirCarga(int carga) ;
+		//metodos da super classe
+		
+		void Delete();
+		
+		void transmitirCarga(int carga);
+		
+		void receberCarga(int carga);
+		
+		void emitirCarga(int carga);
 
-		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen, TTF_Font* font, int spacing, int min_x_y) ;
+		void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Elemento::Posicao spacing, Elemento::Posicao min_x_y) ;
 };
 
 #endif // _GERADOR_H

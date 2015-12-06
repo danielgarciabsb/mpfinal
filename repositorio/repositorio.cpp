@@ -14,14 +14,13 @@ set<Interconexao*> Repositorio::interconexoesDesconectadas;
 
 //int Repositorio::numGeradores;
 
-void Repositorio::lerElementos()
+Repositorio::rLeitura Repositorio::lerElementos(string nomeArquivo)
 {
-	string nomeArquivo;
-
-	cout << "Digite o nome do arquivo de entrada:\n";
-	cin >> nomeArquivo; 
-
 	ifstream fin(nomeArquivo.c_str());
+	
+	if(! fin.is_open())
+		return ARQUIVO_INEXISTENTE;
+		
 	char identificador;
 	
 	string nome;
@@ -34,12 +33,18 @@ void Repositorio::lerElementos()
 	
 	while(fin >> identificador)
 	{
+		if(identificador != 'G' && identificador != 'A' && identificador != 'C' && identificador != 'I')
+			return FORMATO_INVALIDO;
+			
 		switch(identificador)
 		{
 			case 'G':
 				int recursoProduzido, custoGerador;
 				
 				fin >> nome >> posicao.x >> posicao.y >> recursoProduzido >> custoGerador;
+				
+				if(fin.fail())
+					return FORMATO_INVALIDO;
 				
 				g = new Gerador(nome, posicao, posicao, recursoProduzido, custoGerador);
 				
@@ -55,6 +60,9 @@ void Repositorio::lerElementos()
 				
 				fin >> nome >> posicao.x >> posicao.y >> recursoNecessario;
 				
+				if(fin.fail())
+					return FORMATO_INVALIDO;
+
 				c = new Cidade(nome, posicao, posicao, recursoNecessario);
 				Repositorio::getCidades()->insert(c);
 				Repositorio::getElementos()->insert(c);
@@ -64,8 +72,12 @@ void Repositorio::lerElementos()
 				break;
 				
 			case 'A':
+				
 				fin >> nome >> posicao.x >> posicao.y;
-				 
+
+				if(fin.fail())
+					return FORMATO_INVALIDO;
+					
 				a = new Adaptador(nome, posicao, posicao);
 				Repositorio::getAdaptadores()->insert(a);
 				Repositorio::getElementos()->insert(a);
@@ -80,8 +92,12 @@ void Repositorio::lerElementos()
 				fin >> nome >> posicaoInicial.x >> posicaoInicial.y >> posicaoFinal.x >> posicaoFinal.y 
 					>> capacidadeMax >> chanceFalha >> tempoConserto >> custoConserto;
 					
+				if(fin.fail())
+					return FORMATO_INVALIDO;
+
 				i = new Interconexao(nome, posicaoInicial, posicaoFinal,
 										capacidadeMax, chanceFalha, tempoConserto, custoConserto);
+										
 				Repositorio::getInterconexoes()->insert(i);
 				Repositorio::getElementos()->insert(i);
 				
@@ -91,5 +107,7 @@ void Repositorio::lerElementos()
 				break;
 		}
 	}
+	
+	return OK;
 }
 

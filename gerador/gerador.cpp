@@ -1,8 +1,17 @@
 #include "gerador.hpp"
 
+void Gerador::Delete()
+{
+	this->~Gerador();
+}
+
 int Gerador::getRecursoProduzido() { return this->recursoProduzido;}
 
 int Gerador::getCustoGerador() { return this->custoGerador;}
+
+void Gerador::transmitirCarga(int carga) {}
+
+void Gerador::receberCarga(int carga) {}
 
 void Gerador::emitirCarga(int carga)
 {
@@ -16,16 +25,17 @@ void Gerador::emitirCarga(int carga)
 		if(((Interconexao*)(*iSaidas))->isWorking())
 			totalCargaSaidas += ((Interconexao*)(*iSaidas))->getCapacidadeMax();
 	}
-		
+
 	for(iSaidas = saidas->begin(); iSaidas != saidas->end(); iSaidas++)
 	{
 		proporcao = (float) ((Interconexao*)(*iSaidas))->getCapacidadeMax() / totalCargaSaidas;
 
 		(*iSaidas)->transmitirCarga((int) (proporcao * carga));
 	}
-}
+} ;
 
-void Gerador::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, int spacing, int min_x_y) {
+void Gerador::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Elemento::Posicao spacing, Elemento::Posicao min_x_y)
+{
 	const char* string = NULL;
 	SDL_Color preto = {00, 00, 00, 0xFF};
 
@@ -36,8 +46,8 @@ void Gerador::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* fo
 	// Os elementos são impressos em escala logarítmica. Por isso esses "logs".
 	// Se quiser deslocar a posição a ser impressa é só somar ou diminuir a quantidade
 	// de pixels de pos_x ou pos_y.
-	int pos_first_point_x = log(1 + this->getPosicaoInicial().x - min_x_y) * spacing;
-	int pos_first_point_y = log(1 + this->getPosicaoInicial().y - min_x_y) * spacing + 60;
+	int pos_first_point_x = log(1 + this->getPosicaoInicial().x - min_x_y.x) * spacing.x;
+	int pos_first_point_y = log(1 + this->getPosicaoInicial().y - min_x_y.y) * spacing.y + 60; // + 60
 
 	//// Imprimindo a figura geométrica.
 	filledTrigonColor(gRenderer, pos_first_point_x, pos_first_point_y, pos_first_point_x + 30, pos_first_point_y - 60, 
@@ -69,4 +79,4 @@ void Gerador::draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* fo
 	rect = { pos_first_point_x , pos_first_point_y - 60 + 26, 0, 0};
 	SDL_BlitSurface(text_sf, NULL, screen_sf, &rect);
 	SDL_FreeSurface(text_sf);
-}
+} ;

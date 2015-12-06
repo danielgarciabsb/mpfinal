@@ -35,7 +35,7 @@ class Elemento
 		~Elemento() {};
 		
 		// Constructor.
-		Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal) ;
+		Elemento(string nome, Posicao posicaoInicial, Posicao posicaoFinal);
 
 		// Gets e sets.	
 		string getNome();
@@ -46,16 +46,18 @@ class Elemento
 		int getCarga();
 		void setCarga(int carga);
 		
-		// Métodos.
-		virtual void receberCarga(int carga) {} ; 
+		// Métodos virtuais.
+		virtual void Delete() = 0;
+		
+		virtual void receberCarga(int carga) = 0 ; 
 
-		virtual void emitirCarga(int carga) = 0 ;
+		virtual void emitirCarga(int carga) = 0;
 		
 		// No maioria dos casos esse método transmite a carga, ou seja, recebe e reenvia.
 		// Porém, no caso da cidade esse método somente recebe a carga.
-		virtual void transmitirCarga(int carga) ;
+		virtual void transmitirCarga(int carga) = 0 ;
 				
-		virtual void draw() {} ;
+		virtual void draw(SDL_Renderer* gRenderer, SDL_Surface* screen_sf, TTF_Font* font, Posicao spacing, Posicao min_x_y) {};
 };
 
 #endif // _ELEMENTO_H

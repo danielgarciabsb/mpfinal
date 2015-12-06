@@ -27,6 +27,12 @@ class Repositorio
 		static set<Interconexao*> interconexoesDesconectadas;
 		
 	public:
+		
+		enum rLeitura
+		{
+			ARQUIVO_INEXISTENTE, FORMATO_INVALIDO, OK
+		};
+		
 		static set<Elemento*> * getElementos() { return &Repositorio::elementos; }
 		static set<Gerador*> * getGeradores() { return &Repositorio::geradores; }
 		static set<Adaptador*> * getAdaptadores() { return &Repositorio::adaptadores; }
@@ -39,7 +45,8 @@ class Repositorio
 		static set<Adaptador*> * getAdaptadoresDesconectados() { return &Repositorio::adaptadoresDesconectados; }
 		static set<Interconexao*> * getInterconexoesDesconectadas() { return &Repositorio::interconexoesDesconectadas; }
 		
-		static void lerElementos();
+		static rLeitura lerElementos(string nomeArquivo);
+		
 };
 
 #endif // _REPOSITORIO_H
