@@ -27,7 +27,13 @@ int main(int argc, char **argv)
 	c->inicializarAmbiente();
 	
 	// Metodo estatico para ler os elementos da rede e instanciar os objetos
-	leitura = c->lerElementos("rede_distribuica.conf");
+	cout << "\t\t>> Digite o nome do arquivo de configuracao: ";
+	
+	string nomeArq;
+	
+	cin >> nomeArq;
+	
+	leitura = c->lerElementos(nomeArq);
 	switch(leitura)
 	{
 		case Repositorio::ARQUIVO_INEXISTENTE:
@@ -44,7 +50,12 @@ int main(int argc, char **argv)
 	c->mostrarElementos();
 	c->descobrirConexoes();
 	c->calcularPropriedadesDiagrama();
-	c->rodarSimulacao(5);
+	
+	int tempoSimulacao;
+	
+	cout << "\t\t>> Digite o tempo de simulacao: ";
+	cin >> tempoSimulacao;
+	c->rodarSimulacao(tempoSimulacao);
 	c->finalizar();
 	delete c;
 	
